@@ -1,7 +1,7 @@
 ## User Schema
 
 ```
-User {
+User
   _id: ObjectId // user's ID
   fullName: string // user's full name
   email: string // user's email

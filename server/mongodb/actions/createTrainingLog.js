@@ -6,15 +6,11 @@ export default async function createTrainingLog(data) {
     try {
         await connectDB();
         const trainingLogSchema = new TrainingLog(data);
-        await trainingLogSchema.save(); 
-
+        await trainingLogSchema.save();
     } catch (e) {
         console.log(e);
         throw new Error("Could not create new training log");
     }
-
-
-
 
 }
 

@@ -6,7 +6,7 @@ export default async function deleteTrainingLog(data) {
     try {
         await connectDB();
         const { identifier } = data;
-        const log = await TrainingLog.findByIdAndDelete(identifier);
+        const log = await TrainingLog.findByIdAndDelete(identifier).projection(incl);
         if (!log) {
             throw new Error("Log not found");
         }

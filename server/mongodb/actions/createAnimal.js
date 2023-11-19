@@ -1,7 +1,7 @@
 import { connectDB } from '../index.js';
 import Animal from "../models/Animal.js"
 
-export default async function createAnimal(name, age) {
+export default async function createAnimal(name, breed, owner, hoursTrained, profilePictureUrl) {
     try {
       await connectDB();
 

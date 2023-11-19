@@ -4,6 +4,7 @@ import updateTrainingLog from "../../../server/mongodb/actions/updateTrainingLog
 import User from "../../../server/mongodb/models/User";
 import Animal from "../../../server/mongodb/models/Animal";
 import TrainingLog from "../../../server/mongodb/models/TrainingLog";
+import readTrainingLog from "../../../server/mongodb/actions/readTrainingLog";
 
 //other CRUD actions from server
 
@@ -39,6 +40,11 @@ export default async function handler(req, res) {
             return res.status(500).send("Failed to update training log!");
         }
     } else if (req.method === "GET") {
-
+        try {
+            const result = await readTrainingLog(req.query);
+            return res.status(200).send(result);
+        } catch (e) {
+            return res.status(500).send("Failed to retrieve training logs");
+        }
     }
 }

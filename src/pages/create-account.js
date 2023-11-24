@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import styles from "../styles/CreateAccount.module.css";
+import Link from 'next/link';
 
-export default function Login() {
+export default function CreateAccount() {
 
     return (
         <div className={styles.container}>
@@ -20,7 +21,7 @@ export default function Login() {
                     <span class={styles.checkmark}></span>
                 </label>
                 <button type="button" className={styles.signUpButton}>Sign Up</button>
-                <p>Don't have an account? <b className={styles.signIn}>Sign in</b></p>
+                <p>Don't have an account? <Link href="/"><b className={styles.signIn}>Sign in</b></Link></p>
             </div>
             <div className={styles.footer}>
                 <p>Made with ♡ by Team Elephant<br />© 2023 BOG Developer Bootcamp. All rights reserved.</p>

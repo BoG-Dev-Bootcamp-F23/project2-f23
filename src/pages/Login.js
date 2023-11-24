@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from "../styles/Login.module.css";
+import Link from 'next/link';
 
 export default function Login() {
 
@@ -14,7 +15,7 @@ export default function Login() {
                 <input type="email" placeholder='Email' className={styles.input} />
                 <input type="password" placeholder='Password' className={styles.input} />
                 <button type="button" className={styles.logInButton}>Log In</button>
-                <p>Don't have an account? <b className={styles.signUp}>Sign up</b></p>
+                <p>Don't have an account? <Link href="create-account"><b className={styles.signUp}>Sign up</b></Link></p>
             </div>
             <div className={styles.footer}>
                 <p>Made with ♡ by Team Elephant<br />© 2023 BOG Developer Bootcamp. All rights reserved.</p>

@@ -1,0 +1,32 @@
+.animal-card {
+    width: 400;
+    height: 374;
+    border-radius: 10px;
+    background-color: white;
+}
+
+
+.animalCardInfo {
+    font-family: sans-serif;
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.animalCardText {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.nameDog {
+ font-weight: 500;
+}
+
+.trainerHours {
+    display: flex;
+    flex-direction: row;
+    font-weight: 200;
+    color: lightgray;
+}
+

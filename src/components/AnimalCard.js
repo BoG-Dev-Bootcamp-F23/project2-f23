@@ -1,19 +1,12 @@
 import react from 'react'
-import Dog from '../dog.jpg'
 import styles from '..//styles/AnimalCard.module.css'
-
-
-
-
 
 export default function AnimalCard() {
 
 
     return (
-
-
         <div class = "animal-card" className= {styles.animalCard}>
-            <img src={Dog} className={styles.animalCardPhoto} alt = "dog" />
+            <img src="dog.jpg" className={styles.animalCardPhoto} alt="dog" />
             <div className = {styles.animalCardInfo}>
                 <div class = "logo">
                     

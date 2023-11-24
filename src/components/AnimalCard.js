@@ -1,9 +1,6 @@
 import react from "react";
-import dog from "../dog.jpg"
-import styles from "src/styles/animalcard.module.css"
-
-
-
+import Dog from "../Dog.png";
+import styles from "../styles/AnimalCard.module.css"
 
 
 
@@ -14,9 +11,7 @@ export default function AnimalCard() {
 
 
         <div class = "animal-card" className= {styles.animalCard}>
-            <div> 
-                <img id = "dog-image" src={dog} alt="dogimg"/>
-            </div>
+            <img id = "dog-image" src= {Dog} alt= "dogimg"/>
             <div className = {styles.animalCardInfo}>
                 <div class = "logo">
                     
@@ -26,8 +21,7 @@ export default function AnimalCard() {
                         <p> Nathan - Golden Retriever </p>
                     </div>
                     <div className = {styles.trainerHours}>
-                        <p> Liam Long </p>
-                        <p> Trained 100 hours </p>
+                        <p> Liam Long • Trained 100 hours</p>
                     </div>
                 </div>
             </div>

@@ -5,11 +5,13 @@ export default function AnimalCard() {
 
 
     return (
-        <div class = "animal-card" className= {styles.animalCard}>
-            <img src="dog.jpg" className={styles.animalCardPhoto} alt="dog" />
+        <div className= {styles.animalCard}>
+            <div className={styles.imageHolder}>
+                <img src="dog.jpg" className={styles.animalCardPhoto} alt="dog" />
+            </div>
             <div className = {styles.animalCardInfo}>
-                <div class = "logo">
-                    
+                <div className={styles.circle}>
+                <div className = {styles.logo}> L </div>
                 </div>
                 <div className= {styles.animalCardText} > 
                     <div className = {styles.nameDog}>

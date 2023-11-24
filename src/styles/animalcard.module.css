@@ -1,42 +1,70 @@
 /* AnimalCard.module.css */
 
-.animal-card {
+.animalCard {
     margin-left: 100px;
-    width: 400px; /* Add 'px' for width */
-    height: 374px; /* Add 'px' for height */
+    width: 400px;
+    height: 380px; /* Adjust the height to fit the entire image */
     border-radius: 10px;
-    background-color: white;
-    border-width: 5px;
+    overflow: hidden; /* Add this to clip the rounded corners */
+}
+
+.imageHolder {
+    width: 100%;
+    height: 80%; /* Adjust the height for the image container */
+    overflow: hidden; /* Add this to clip the rounded corners */
 }
 
 .animalCardPhoto {
-    width: 200px;
-    height: 200px; /* Add 'px' for height */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire container */
+    object-position: center center; /* Center the image */
+    border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
 }
+.circle {
+        width: 60px;
+        height: 60px;
+        background-color: maroon;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+}
+
+.logo {
+    color: white;
+    font-size: 24px; /* Adjust the font size of your letter */
+    font-weight: bold; /* Adjust the font weight of your letter */
+  }
 
 .animalCardInfo {
     font-family: sans-serif;
-    font-size: 30px;
+    font-size: 20px; /* Adjust the font size as needed */
     display: flex;
     flex-direction: row;
-    background-color: brown;
-    width: 374px;
-    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    padding-left: 2%;
+    background-color: white;
+    border-radius: 0 0 10px 10px; /* Rounded corners only at the bottom */
+    height: 20%; /* Adjust the height for the info container */
 }
 
-
 .animalCardText {
+    margin-left: 10%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .nameDog {
+    color: black;
     font-weight: 500;
 }
 
 .trainerHours {
-    display: flex;
-    flex-direction: row;
+    color: grey;
     font-weight: 200;
-    color: lightgray;
+    font-size: smaller;
 }
+

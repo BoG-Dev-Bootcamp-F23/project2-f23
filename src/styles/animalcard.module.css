@@ -3,22 +3,22 @@
 .animalCard {
     margin-left: 100px;
     width: 400px;
-    height: 380px; /* Adjust the height to fit the entire image */
+    height: 400px; /* Adjust the height to fit the entire image */
     border-radius: 10px;
     overflow: hidden; /* Add this to clip the rounded corners */
 }
 
 .imageHolder {
+    padding-top: 5%;
     width: 100%;
-    height: 80%; /* Adjust the height for the image container */
-    overflow: hidden; /* Add this to clip the rounded corners */
+    height: 65%; /* Adjust the height for the image container */
+ /* Add this to clip the rounded corners */
 }
 
 .animalCardPhoto {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cover the entire container */
-    object-position: center center; /* Center the image */
+    object-fit: top;
     border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
 }
 .circle {

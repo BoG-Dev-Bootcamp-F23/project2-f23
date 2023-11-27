@@ -1,0 +1,63 @@
+.userInfoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 20px;
+}
+
+
+.userLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.userTopAndBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.userTop {
+  display: flex;
+  flex-direction: row;
+}
+
+.userBottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: -10px;
+}
+
+.userName {
+    font-size: 20px;
+    font-weight: bold;
+    color: #260101;
+    font-family: 'Heebo', sans-serif;
+}
+
+.userType {
+    font-size: 15px;
+    color:#999999;
+    font-family: 'Heebo', sans-serif;
+}
+
+.userLogo {
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+    background-color: #d21312;
+    border-radius: 70px;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 25px;
+    align-items: center;
+    font-family: 'Heebo', sans-serif;
+}

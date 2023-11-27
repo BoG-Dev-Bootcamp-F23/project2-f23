@@ -1,5 +1,6 @@
 import react from 'react'
 import styles from '..//styles/AnimalCard.module.css'
+import { useState, useEffect } from 'react';
 
 export default function AnimalCard() {
 

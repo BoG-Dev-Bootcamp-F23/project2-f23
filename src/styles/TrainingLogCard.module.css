@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Heebo';
+    src: url('/src/fonts/Heebo-Regular.ttf') format('ttf'); /* adjust the filename accordingly */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
 .mainCard {
     height: 120px;
     width: 1165px;
@@ -8,15 +17,19 @@
     background-color: white;
     border-radius: 10px;
     justify-content: space-between;
+    font-family: 'Heebo', sans-serif;
 }
 
 
 .cardTitle {
     display: flex;
     flex-direction: row;
+    font-size: 15px;
+    font-weight: 700;
 }
 .hours {
-    padding-top: 18px;
+    color: #999999;
+    padding-top: 12px;
     padding-left: 7px;
 }
 
@@ -27,10 +40,18 @@
     color: white;
     font-weight: 500;
     padding: 10px;
+    padding-top: 20px;
     align-items: center;
+    font-family: 'Oswald';
+    font-size: large;
     height: inherit;
     width: 120px;
     
+}
+
+.dogInfo {
+    color:#999999;
+    padding-bottom: 5px;
 }
 
 
@@ -40,9 +61,8 @@
     padding-left: 2%;
     display: flex;
     flex-direction: column;
-    padding-top: 5px;
-    padding-bottom: 9px;
     padding-right: 600px;
+    justify-content: space-around;
     border-top-right-radius: 10px; 
     border-bottom-right-radius: 10px;
 }

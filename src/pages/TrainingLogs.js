@@ -11,16 +11,26 @@ import TrainingLogCard from '@/components/TrainingLogCard';
 
 export default function TrainingLogs() {
 
-    const [trainingCard, setTrainingCard] = useState()
-
+    const [trainingCard, setTrainingCard] = useState();
 
     async function getTrainingData() {
-        const rawData = await fetch("/api/admin/training")
-        const data = rawData.json;
-        setTrainingCard(data);
-        return data;
+        try {
+            const rawData = await fetch("http://localhost:3000/api/admin/training")
+            const data = await rawData.json();
+            setTrainingCard(data);
+            console.log(data);
+            return data;
+        } catch (error) {
+            console.log("error happenend:" + error);
+        }
     }
 
+
+    useEffect(() => {
+        getTrainingData();
+    }, []);
+
+    console.log(trainingCard)
 
 
     return (
@@ -30,13 +40,5 @@ export default function TrainingLogs() {
                 ))}
         </div>
     );
-
-
-
-
-
-
-
-
 
 }

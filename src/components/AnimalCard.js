@@ -8,7 +8,7 @@ export default function AnimalCard() {
     return (
         <div className= {styles.animalCard}>
             <div className={styles.imageHolder}>
-                <img src="dog.jpg" className={styles.animalCardPhoto} alt="dog" />
+                <img src= "dog.jpg" className={styles.animalCardPhoto} alt="dog" />
             </div>
             <div className = {styles.animalCardInfo}>
                 <div className={styles.circle}>

@@ -74,8 +74,21 @@
     border-radius: 50%;
     color: white;
     background-color:  maroon;
-    align-items: center;
     margin-right: 15px;
+    align-content: center;
+}
+
+.editButton:hover {
+    background-color:  black;
+    margin-right: 15px;
+    align-content: center;
+}
+
+.editVector {
+    height: 40px;
+    width: 40px;
+    padding-left: 17px;
+    padding-top: 17px;
 }
 
 .letter {

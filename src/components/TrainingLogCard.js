@@ -101,7 +101,7 @@ export default function TrainingLogCard(props) {
                 </div>
             </div>
             <div className = {styles.editButton}>
-                <p className= {styles.letter}> Edit</p>
+                <img src="Vector.png" className={styles.editVector} alt="editImage"/>
             </div>
         </div>
     );

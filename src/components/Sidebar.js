@@ -9,7 +9,7 @@ import adminUsers from '@/images/adminUsers.png'
 import logoutIcon from '@/images/logoutIcon.png'
 
 export default function Sidebar({userId, userName, admin, updatePanel, activePanel}) {
-    // {admin = true}
+
     {userName = "Sahi Pasagada"}
     return (
         <div className={styles.sideBarContainer}>

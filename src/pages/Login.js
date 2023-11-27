@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import styles from "../styles/Login.module.css";
 import Link from 'next/link';
+import Header from '@/components/Header';
 
 export default function Login() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.navbar}>
+            {/* <div className={styles.navbar}>
                 <img src="pawprint.png" className={styles.pawprint} />
                 <h1>Progress</h1>
-            </div>
+            </div> */}
+            <Header></Header>
             <div className={styles.loginBox}>
                 <h1>Login</h1>
                 <input type="email" placeholder='Email' className={styles.input} />

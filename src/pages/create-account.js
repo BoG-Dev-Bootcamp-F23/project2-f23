@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import styles from "../styles/CreateAccount.module.css";
 import Link from 'next/link';
+import Header from '@/components/Header';
 
 export default function CreateAccount() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.navbar}>
+            {/* <div className={styles.navbar}>
                 <img src="pawprint.png" className={styles.pawprint} />
                 <h1>Progress</h1>
-            </div>
+            </div> */}
+            <Header></Header>
             <div className={styles.accountBox}>
                 <h1>Create Account</h1>
                 <input type="text" placeholder="Full Name"  className={styles.input} />

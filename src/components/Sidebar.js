@@ -13,6 +13,7 @@ export default function Sidebar({userId, userName, admin, updatePanel, activePan
     {userName = "Sahi Pasagada"}
     return (
         <div className={styles.sideBarContainer}>
+            
             <div className={styles.userContainer}>
                 <div className={styles.activePanel}>
                     <Image src={trainingIcon} width={30} height={30} className={styles.icon}></Image>

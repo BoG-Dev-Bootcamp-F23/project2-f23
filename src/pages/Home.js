@@ -10,7 +10,7 @@ import Header from '@/components/Header';
 
 export default function Home() {
 
-    const [training, setTraining] = useState(true);
+    const [training, setTraining] = useState(false);
     const [animalCards, setAnimalCards] = useState([]);
     const [trainingCard, setTrainingCard] = useState([]);
 

@@ -22,7 +22,7 @@ export default function TrainingLogCard(props) {
 
     async function getUser() {
         await connectDB();
-        const userData = await User.findById(user);
+        const userData = await User?.findById(user);
         console.log(userData);
         const name = userData.fullName;
         console.log(name);
@@ -30,9 +30,9 @@ export default function TrainingLogCard(props) {
         console.log(realUser);
     }
 
-    // useEffect(() => {
-    //     getUser();
-    // },[]);
+    useEffect(() => {
+        getUser();
+    },[]);
 
     
     

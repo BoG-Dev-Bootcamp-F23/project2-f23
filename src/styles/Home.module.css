@@ -6,9 +6,16 @@
   padding: 6rem;
   min-height: 100vh;
 }
+
 .mainContent {
   display: flex;
   flex-direction: row;
+  overflow: hidden;
+}
+
+.contentContainer {
+  overflow: scroll;
+
 }
 
 .description {

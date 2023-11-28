@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import paw from "../images/paw.jpg";
 import Head from 'next/head';
 import styles from '../styles/SearchBar.module.css';
 
-export default function SearchBar(props) {
-    const { searchTerm, setSearchTerm } = props;
+export default function TitleBar() {
     return (
         <div className={styles.bar}>
             <Head>
@@ -17,12 +15,6 @@ export default function SearchBar(props) {
                 <Image className={styles.image} src={paw} alt="paw-logo" />
                 <p className={styles.titletext}>Pawgress</p>
             </div>
-            <input
-                type="text"
-                placeholder="Search"
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-            />
         </div>
     );
 };

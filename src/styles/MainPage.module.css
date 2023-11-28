@@ -1,0 +1,20 @@
+.body {
+    display: flex;
+    flex-direction: row;
+}
+
+.right {
+    flex-grow: 1;
+}
+
+.right_header_yescreate {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.right_header_create {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

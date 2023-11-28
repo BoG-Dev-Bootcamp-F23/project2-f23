@@ -1,4 +1,5 @@
-import styles from '../styles/createaccount.module.css';
+import styles from '../styles/CreateAccount.module.css';
+import Head from 'next/head';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -16,12 +17,10 @@ export default function CreateAccount() {
         }
     }
 
-    async function handleSubmit() {
-        console.log("this point 6");
+    const handleSubmit = async(e) => {
         try {
-            console.log("dasfasdfasfas");
+            e.preventDefault()
             await createUser()
-            console.log("dsaf")
             router.push('/Login')
         } catch (e) {
 
@@ -32,27 +31,28 @@ export default function CreateAccount() {
         if (password !== confirm) {
             // error handling
         }
-        console.log("this point 5");
         const response = await fetch('/api/user', {
             method: 'POST',
             body: JSON.stringify({ fullName, email, password, admin })
         })
-
-        console.log("this point 4");
 
         if (response.status === 'Failed to create because user exists already') {
             console.log("user exists already")
         } else if (response.status === 'Failed to create because external issues') {
             // what do I do here?
         }
-
-        console.log("creaet user");
     }
 
     return (
+        
         <div className={styles.flexbox}>
+            <Head>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&display=swap" rel="stylesheet" />
+            </Head>
             <h1 className={styles.title}>Create Account</h1>
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleSubmit}>
                 <input type="text" 
                     className={styles.input}
                     id="fullName" 
@@ -84,9 +84,7 @@ export default function CreateAccount() {
                     className={styles.input}
                     onChange={(e) => setAdmin(!admin)}></input>
                     Admin access</label>
-                <button className={styles.button} onClick={() => {
-                    handleSubmit();
-                }}>Sign up</button>
+                <button className={styles.button} type="submit">Sign up</button>
             </form>
             <p className={styles.bottomNote}>Already have an account? <a className={styles.click} onClick={() => {
                 router.push('/Login')

@@ -5,7 +5,8 @@ import createTrainingLog from "../../../server/mongodb/actions/createTrainingLog
 export default async function handler(req, res) {
     if (req.method === "PATCH") {
         try {
-            const response = await updateTrainingLog(req.body);
+            const body = JSON.parse(req.body)
+            const response = await updateTrainingLog(body);
             // console.log(response);
             return res.status(200).json({"status": "success"});
         } catch (e) {
@@ -29,9 +30,9 @@ export default async function handler(req, res) {
         }
     } else if (req.method === 'POST') {
         try {
-            console.log(req.body)
-            const response = await createTrainingLog(req.body);
-            console.log(response);
+            const body = JSON.parse(req.body)
+            // console.log(body);
+            const response = await createTrainingLog(body);
             return res.status(200).json({"status": "success"});
         } catch (e) {
             console.log(e.message.toString());

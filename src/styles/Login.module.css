@@ -10,6 +10,9 @@
 
 .title {
     color: black;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
 }
 
 .form {

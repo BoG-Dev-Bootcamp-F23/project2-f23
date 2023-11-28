@@ -1,0 +1,22 @@
+.animalContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+  
+
+.formContainer {
+    display: flex;
+    flex-direction: column;   
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.date-group {
+    display: flex;
+    gap: 8px;
+}

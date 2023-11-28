@@ -1,22 +1,27 @@
 import styles from '../styles/login.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
 
-    async function handleSubmit() {
+    const handleSubmit = async(e) => {
+        e.preventDefault();
         const response = await login();
-        console.log(response);
-        router.push({
-            pathname: '/MainPage',
-            query: {
-                userID: response.userID,
-                admin: response.admin
-            }
-        })
+        if (response.status) {
+            // error handling;
+        } else {
+            router.push({
+                pathname: '/MainPage',
+                query: {
+                    userID: response.userID,
+                    admin: response.admin
+                }
+            })
+        }
     }
 
     async function login() {
@@ -31,8 +36,13 @@ export default function Login() {
 
     return (
         <div className={styles.flexbox}>
+            <Head>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&display=swap" rel="stylesheet" />
+            </Head>
             <h1 className={styles.title}>Login</h1>
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleSubmit}>
                 <input type="email" 
                     className={styles.input} 
                     placeholder="Email"
@@ -43,31 +53,10 @@ export default function Login() {
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)} 
                     required></input>
-                <button className={styles.button} type="submit" onClick={(e) => {
- 
-                    e.preventDefault();                   
-                    handleSubmit();
-                    console.log("aisdofjajsdlf")
-                    // const response = login();
-                    // console.log(response);
-                    // router.push({
-                    //     pathname: '/MainPage',
-                    //     query: {
-                    //         userID: response.userID,
-                    //         admin: response.admin
-                    //     }
-                    // })
-                }}>Log in</button>
+                <button className={styles.button} type="submit">Log in</button>
             </form>
             <p className={styles.bottomNote}>Don't have an account? <a className={styles.click} onClick={() => {
-                const response = login();
-                router.push({
-                    pathname: '/MainPage',
-                    query: {
-                        userID: response.userID,
-                        admin: response.admin
-                    }
-                })
+                router.push('./CreateAccount');
             }}>Sign up</a></p>
         </div>
     );

@@ -5,7 +5,8 @@ import createAnimal from "../../../server/mongodb/actions/createAnimal.js";
 export default async function handler(req, res) {
     if (req.method === "PATCH") {
         try {
-            const response = await updateAnimal(req.body);
+            const body = JSON.parse(req.body)
+            const response = await updateAnimal(body);
             return res.status(200).json({"status": "success"});
         } catch (e) {
             console.log(e.message.toString());
@@ -27,7 +28,8 @@ export default async function handler(req, res) {
         }
     } else if (req.method === 'POST') {
         try {
-            const response = await createAnimal(req.body);
+            const body = JSON.parse(req.body)
+            const response = await createAnimal(body);
             return res.status(200).json({"status": "success"});
         } catch (e) {
             console.log(e.message.toString());

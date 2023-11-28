@@ -5,7 +5,7 @@ function isDateValid(dateStr) {
     return !isNaN(new Date(dateStr));
 }
 
-export default function CreateTrainingLog({ display, setDisplay}) {
+export default function CreateTrainingLog({ display, setDisplay, userID}) {
     const [title, setTitle] = useState('');
     const [animal, setAnimal] = useState('');
     const [hours, setHours] = useState('');
@@ -14,15 +14,35 @@ export default function CreateTrainingLog({ display, setDisplay}) {
     const [year, setYear] = useState('');
     const [notes, setNotes] = useState('');
 
-    const handleSubmit = () => {
-      console.log({
-        title,
-        animal,
-        hours,
-        date: `${month} ${day}, ${year}`,
-        notes,
-      });
+    async function handleSubmit() {
+        const param = {
+            user: userID,
+            animal,
+            title,
+            date: `${month} ${day}, ${year}`,
+            notes,
+            hours,
+        };
+        const response = await createlog(param);
+        console.log(response);
+        if (response.status) {
+            // error handling;
+        } else {
+            setDisplay(0);
+        }
     };
+    
+    async function createlog(param) {
+        console.log(param.user);
+        const result = await fetch('/api/training', {
+            method: 'POST',
+            body: JSON.stringify(param)
+        })
+        // throw new Error("here");
+        const data = await result.json()
+        console.log(data);
+        return data;
+    }
 
     return (
         // <div className={styles.trainingLogContainer}>

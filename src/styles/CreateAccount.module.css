@@ -10,10 +10,15 @@
 
 .title {
     color: black;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    font-size: 56px;
 }
 
 .adminText {
     color: black;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 300;
 }
 
 .form {
@@ -24,17 +29,43 @@
 .input {
     border: none;
     border-bottom: 3px solid #D21312;
+    height: 10vh;
+    color: black;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+}
+
+.input::placeholder {
+    font-family: 'Heebo', sans-serif;
+    color: black;
+    font-weight: 300;
+    font-size: 25px;
+}
+
+.input:focus::placeholder {
+    color: transparent;
 }
 
 .button {
     background-color: #D21312;
     border: 0px;
+    height: 70px;
+    width: 700px;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    font-size: 40px;
 }
 
 .bottomNote {
     color: black;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 300;
 }
 
 .click {
     cursor: pointer;
+    font-weight: 500;
 }

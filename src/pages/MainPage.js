@@ -33,7 +33,7 @@ export default function MainPage(props) {
     // State for storing animals and training logs
     // const user = props.user;
     // const user = null;
-    let user;
+
     const admin = props.admin;
     const userID = props.userID;
 
@@ -68,33 +68,35 @@ export default function MainPage(props) {
             setUsers(data);
         };
 
+        console.log("qweqrw");
         setLoading(true);
         fetchUsers();
+        console.log("dasf");
         fetchAnimals();
         fetchTrainingLogs();
         setLoading(false);
-        // user = Users.filter(user => user._id === userID);
-        // console.log(user);
     }, []);
 
+    const user = users[0];
+    console.log("hihi");
     return (
         <div className="dashboard">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-            <div className="body">
-                <div className="left">
-                    {/* <Sidebar display={display} setDisplay={setDisplay} user = {user} login={login} setLogin={setLogin}/> */}
-                    {/* { login? router.push('/login') : null} */}
+            {loading?(
+                <div className = "loading">
+                    <h1> Loading ... </h1>
                 </div>
-                {loading?(
-                    <div className = "loading">
-                        <h1> Loading ... </h1>
+            ):(
+                <div className="body">
+                    <div className="left">
+                        <Sidebar display={display} setDisplay={setDisplay} userID = {userID} login={login} setLogin={setLogin}/>
+                        {/* { login? router.push('/login') : null} */}
                     </div>
-                ):(
                     <div className="right">
                         {renderComponent(display, animals, trainingLogs, users, searchTerm, userID)}
                     </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -22,7 +22,7 @@
 import React from 'react';
 import styles from '../styles/TrainingCard.module.css'; // assuming CSS module
 
-export default function TrainingCard({ log }) {
+export default function TrainingCard({ log, setEditLog, setDisplay }) {
     const date = new Date(log.date);
     const monthNames = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -47,7 +47,10 @@ export default function TrainingCard({ log }) {
             </div>
             <div className={styles.editButton}>
                 {/* Assuming you have an edit action or icon */}
-                <button>Edit</button> 
+                <button onClick = {() => {
+                    setEditLog(log);
+                    setDisplay(7);
+                }}>Edit</button> 
             </div>
         </div>
     );

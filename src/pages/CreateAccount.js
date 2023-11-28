@@ -80,10 +80,10 @@ export default function CreateAccount() {
                     placeholder="Confirm Password"
                     onChange={(e) => setConfirm(e.target.value)} 
                     required></input>
-                <label className={styles.adminText}><input type="checkbox" 
+                <div className={styles.checkbox}><label className={styles.adminText}><input type="checkbox" 
                     className={styles.input}
-                    onChange={(e) => setAdmin(!admin)}></input>
-                    Admin access</label>
+                    onChange={(e) => setAdmin(!admin)} />
+                    Admin access</label></div>
                 <button className={styles.button} type="submit">Sign up</button>
             </form>
             <p className={styles.bottomNote}>Already have an account? <a className={styles.click} onClick={() => {

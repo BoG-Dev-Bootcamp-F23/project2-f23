@@ -1,4 +1,4 @@
-import styles from '../styles/login.module.css';
+import styles from '../styles/Login.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';

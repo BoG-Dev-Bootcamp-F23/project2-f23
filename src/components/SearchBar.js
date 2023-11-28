@@ -11,18 +11,21 @@ export default function SearchBar(props) {
             <Head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-                <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500&family=Oswald:wght@500&display=swap" rel="stylesheet" />
             </Head>
-            <div className={styles.flexbox}>
-                <Image className={styles.image} src={paw} alt="paw-logo" />
-                <p className={styles.titletext}>Pawgress</p>
+            <div className={styles.outerbox}>
+                <div className={styles.flexbox}>
+                    <Image className={styles.image} src={paw} alt="paw-logo" />
+                    <p className={styles.titletext}>Pawgress</p>
+                </div>
+                <input
+                    className={styles.searchBar}
+                    type="text"
+                    placeholder="Search"
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
+                />
             </div>
-            <input
-                type="text"
-                placeholder="Search"
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-            />
         </div>
     );
 };

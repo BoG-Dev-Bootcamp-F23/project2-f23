@@ -25,10 +25,10 @@ export default function CreateTrainingLog({ display, setDisplay, userID, animals
         };
         const response = await createlog(param);
         console.log(response);
-        if (response.status) {
-            // error handling;
-        } else {
+        if (response.status === "success") {
             setDisplay(0);
+        } else {
+            //error handling
         }
     };
     

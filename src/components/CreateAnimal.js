@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 // import styles from './CreateAnimal.module.css';
+import fetchAnimals from "../pages/MainPage"
 
 function isDateValid(dateStr) {
     return !isNaN(new Date(dateStr));
 }
 
-export default function CreateAnimal({display, setDisplay}) {
+export default function CreateAnimal({display, setDisplay, userID}) {
     const [animalName, setAnimalName] = useState('');
     const [breed, setBreed] = useState('');
     const [hours, setHours] = useState('');
@@ -14,17 +15,35 @@ export default function CreateAnimal({display, setDisplay}) {
     const [year, setYear] = useState('');
     const [notes, setNotes] = useState('');
 
-    const handleSubmit = () => {
+    async function handleSubmit() {
     //   e.preventDefault();
-
-      console.log({
-        animalName,
-        breed,
-        hours,
-        date: `${month} ${day}, ${year}`,
-        notes,
-      });
+        const param = {
+            name: animalName,
+            breed,
+            owner: userID,
+            hoursTrained: hours,
+            profilePicture: notes,
+        };
+        const response = await createanimal(param);
+        console.log(response);
+        if (response.status === "success") {
+            setDisplay(1);
+        } else {
+            //error handling
+        } 
     };
+
+    async function createanimal(param) {
+        console.log(param.name);
+        const result = await fetch('/api/animal', {
+            method: 'POST',
+            body: JSON.stringify(param)
+        })
+        // throw new Error("here");
+        const data = await result.json()
+        console.log(data);
+        return data;
+    }
 
     return (
         // <div className={styles.animalContainer}>

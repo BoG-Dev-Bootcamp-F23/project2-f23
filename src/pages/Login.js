@@ -3,6 +3,7 @@ import styles from "../styles/Login.module.css";
 import Link from 'next/link';
 import useUser from '../../server/utils/useUser';
 import { useRouter } from 'next/router';
+import Header from '@/components/Header';
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -24,7 +25,7 @@ export default function Login() {
             });
             const data = await response.json();
             if (Object.keys(data).length > 0) {
-                router.push("/training-logs");
+                router.push("/home");
             }
         } catch {
             passwordBox.addEventListener("invalid", (event) => {
@@ -35,10 +36,6 @@ export default function Login() {
 
     return (
         <div className={styles.container}>
-            {/* <div className={styles.navbar}>
-                <img src="pawprint.png" className={styles.pawprint} />
-                <h1>Progress</h1>
-            </div> */}
             <Header></Header>
             <div className={styles.loginBox}>
                 <h1>Login</h1>

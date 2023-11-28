@@ -75,32 +75,32 @@ export default function MainPage(props) {
         fetchUsers();
         fetchAnimals();
         fetchTrainingLogs();
+        setLoading(false);
         // user = users.filter(user => user._id === userID);
     }, []);
     useEffect(() => {
         console.log(userID);
         setUser(users.filter(user => user._id === userID)[0]);
-        console.log(users.filter(user => user._id === userID)[0]);
-        setLoading(false);
+        console.log(users.filter(user => user._id === userID));
     }, [users]);
     return (
         <div className="dashboard">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-            {loading?(
-                <div className = "loading">
-                    <h1> Loading ... </h1>
+            <div className="body">
+                <div className="left">
+                    <Sidebar display={display} setDisplay={setDisplay} user = {user} login={login} setLogin={setLogin}/>
+                    {/* { login? router.push('/login') : null} */}
                 </div>
-            ):(
-                <div className="body">
-                    <div className="left">
-                        {/* <Sidebar display={display} setDisplay={setDisplay} user = {user} login={login} setLogin={setLogin}/> */}
-                        {/* { login? router.push('/login') : null} */}
+                {loading?(
+                    <div className = "loading">
+                        <h1> Loading ... </h1>
                     </div>
+                ):(
                     <div className="right">
                         {renderComponent(display, animals, trainingLogs, users, searchTerm, userID)}
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }

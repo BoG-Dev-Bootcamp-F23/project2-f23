@@ -80,7 +80,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                 </div>
             );
         case 5:
-            return <CreateTrainingLog display={display} setDisplay={setDisplay} userID={userID}/>
+            return <CreateTrainingLog display={display} setDisplay={setDisplay} userID={userID} animals={animals}/>
         case 6:
             return <CreateAnimal display={display} setDisplay={setDisplay} userID={userID}/>
     }

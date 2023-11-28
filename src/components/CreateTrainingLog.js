@@ -5,7 +5,7 @@ function isDateValid(dateStr) {
     return !isNaN(new Date(dateStr));
 }
 
-export default function CreateTrainingLog({ display, setDisplay, userID}) {
+export default function CreateTrainingLog({ display, setDisplay, userID, animals}) {
     const [title, setTitle] = useState('');
     const [animal, setAnimal] = useState('');
     const [hours, setHours] = useState('');
@@ -20,7 +20,7 @@ export default function CreateTrainingLog({ display, setDisplay, userID}) {
             animal,
             title,
             date: `${month} ${day}, ${year}`,
-            notes,
+            description: notes,
             hours,
         };
         const response = await createlog(param);
@@ -53,11 +53,10 @@ export default function CreateTrainingLog({ display, setDisplay, userID}) {
                 <input type="text" id="title" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
 
                 <label htmlFor="animal">Select Animal:</label>
-                { /* placeholder options below rn
-                */}
                 <select id="animal" value={animal} onChange={(e) => setAnimal(e.target.value)} required>
-                    <option value="dog">Dog</option>
-                    <option value="cat">Cat</option>
+                    {animals.map(animal => (
+                        <option value={animal._id}>{animal.name} - {animal.breed}</option>
+                    ))}
                 </select>
 
                 <label htmlFor="hours">Total Hours Trained:</label>

@@ -5,17 +5,14 @@ import mongoose from "mongoose"
 
 const trainingLogSchema = new mongoose.Schema({
 
-    _id: {
-        type: ObjectId,
-        required: true
-
-    }, 
-    user: {
-        type: ObjectId,
+    user: {    
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
         required: true
     },
-    animal: {
-        type: ObjectId,
+    animal: {    
+        type: mongoose.Types.ObjectId,
+        ref: 'Animal',
         required: true
     },
     title: {

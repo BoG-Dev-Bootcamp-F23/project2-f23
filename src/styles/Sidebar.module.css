@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
+
+.sideBarContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 300px;
+    min-height: 100vh;
+    background-color: white;
+    font-family: 'Heebo', sans-serif;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.adminContainer {
+    border-top: 1px solid #615E5E66;
+    /* padding-bottom: 300px; */
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.activePanel {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    color: #565252;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    align-items: center;
+    font-family: 'Heebo', sans-serif;
+    background-color: #d21312;
+    color: white;
+}
+
+.inactivePanel {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    color: #565252;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    align-items: center;
+    font-family: 'Heebo', sans-serif;
+}
+
+.noAdmin {
+    border-top: 1px solid #615E5E66;
+    padding-bottom: 500px; 
+}
+
+.adminHeader {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #565252;
+    padding-top: 17px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    margin-left: 10px;
+    font-family: 'Heebo', sans-serif;
+}
+
+.userInfoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    border-top: 1px solid #615E5E66;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    bottom: 0px;
+    position: absolute;
+    
+}
+
+
+.userLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.userTopAndBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.userTop {
+  display: flex;
+  flex-direction: row;
+}
+
+.userBottom {
+  display: flex;
+  flex-direction: row;
+  margin-top: -10px;
+}
+
+.userName {
+    font-size: 20px;
+    font-weight: bold;
+    color:#565252;
+    font-family: 'Heebo', sans-serif;
+}
+
+.userType {
+    font-size: 15px;
+    color:#565252;
+    font-family: 'Heebo', sans-serif;
+}
+
+.userLogo {
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+    background-color: #d21312;
+    border-radius: 70px;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 25px;
+    align-items: center;
+    font-family: 'Heebo', sans-serif;
+}

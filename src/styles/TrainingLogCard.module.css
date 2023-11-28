@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'Heebo';
+    src: url('/src/fonts/Heebo-Regular.ttf') format('ttf'); /* adjust the filename accordingly */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
+.mainCard {
+    height: 120px;
+    width: 1165px;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    justify-content: space-between;
+    font-family: 'Heebo', sans-serif;
+}
+
+
+.cardTitle {
+    display: flex;
+    flex-direction: row;
+    font-size: 15px;
+    font-weight: 700;
+}
+.hours {
+    color: #999999;
+    padding-top: 12px;
+    padding-left: 7px;
+}
+
+.date {
+    background-color: #070A52D9;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-weight: 500;
+    padding: 10px;
+    padding-top: 20px;
+    align-items: center;
+    font-family: 'Oswald';
+    font-size: large;
+    height: inherit;
+    width: 120px;
+    
+}
+
+.dogInfo {
+    color:#999999;
+    padding-bottom: 5px;
+}
+
+
+.trainingInfo {
+    background-color: white;
+    color: black;
+    padding-left: 2%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 600px;
+    justify-content: space-around;
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px;
+}
+
+
+.editButton {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    color: white;
+    background-color:  maroon;
+    margin-right: 15px;
+    align-content: center;
+}
+
+.editButton:hover {
+    background-color:  black;
+    margin-right: 15px;
+    align-content: center;
+}
+
+.editVector {
+    height: 40px;
+    width: 40px;
+    padding-left: 17px;
+    padding-top: 17px;
+}
+
+.letter {
+    margin-left: 17px;
+    margin-top: 17px;
+}

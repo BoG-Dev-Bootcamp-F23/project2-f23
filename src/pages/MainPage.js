@@ -135,11 +135,40 @@ export default function MainPage(props) {
         setLoading(false);
         // user = users.filter(user => user._id === userID);
     }, []);
+
     useEffect(() => {
         console.log(userID);
         setUser(users.filter(user => user._id === userID)[0]);
         console.log(users.filter(user => user._id === userID));
     }, [users]);
+
+    useEffect(() => {
+        const fetchAnimals = async () => {
+            const response = await fetch(adminAPI + 'animals');
+            const data = await response.json();
+            setAnimals(data);
+        };
+
+        const fetchTrainingLogs = async () => {
+            const response = await fetch(adminAPI + 'training');
+            const data = await response.json();
+            setTrainingLogs(data);
+        };
+
+        const fetchUsers = async () => {
+            const response = await fetch(adminAPI + 'users');
+            const data = await response.json();
+            console.log(data);
+            setUsers(data);
+        };
+
+        setLoading(true);
+        fetchUsers();
+        fetchAnimals();
+        fetchTrainingLogs();
+        setLoading(false);
+    }, [display]);
+    
     return (
         <div className="dashboard">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />

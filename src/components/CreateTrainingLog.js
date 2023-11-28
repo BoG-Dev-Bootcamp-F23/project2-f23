@@ -43,6 +43,9 @@ export default function CreateTrainingLog({ display, setDisplay, userID, animals
         console.log(data);
         return data;
     }
+    const filteredAnimals = animals.filter((animal) => {
+        return animal.owner === userID;
+    });
 
     return (
         <div className={styles.trainingLogContainer}>
@@ -53,8 +56,15 @@ export default function CreateTrainingLog({ display, setDisplay, userID, animals
                 <input type="text" id="title" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
 
                 <label htmlFor="animal">Select Animal:</label>
+                {/*
                 <select id="animal" value={animal} onChange={(e) => setAnimal(e.target.value)} required>
                     {animals.map(animal => (
+                        <option value={animal._id}>{animal.name} - {animal.breed}</option>
+                    ))}
+                </select>
+                */}
+                <select id="animal" value={animal} onChange={(e) => setAnimal(e.target.value)} required>
+                    {filteredAnimals.map(animal => (
                         <option value={animal._id}>{animal.name} - {animal.breed}</option>
                     ))}
                 </select>

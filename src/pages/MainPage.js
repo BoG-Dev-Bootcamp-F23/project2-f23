@@ -99,6 +99,7 @@ export default function MainPage(props) {
                     <div className="right">
                         {renderComponent(display, animals, trainingLogs, users, searchTerm, userID)}
                     </div>
+                </div>
             )}
         </div>
     );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from "next/image.js"
+import style from "../styles/MainPage.module.css"
 
 import create from "../images/create.png"
 
@@ -25,9 +26,9 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
         case 0:
             return (
                 <div>
-                    <div className="right-header">
+                    <div className={style.right_header_yescreate}>
                         <p> Training logs</p>
-                        <div className="right-header-create">
+                        <div className={style.right_header_create}>
                             <Image src={create} onClick = {() => {
                                 setDisplay(5);
                             }}/>
@@ -40,22 +41,22 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
         case 1:
             return (
                 <div>
-                    <div className="right-header">
+                    <div className={style.right_header_yescreate}>
                         <p> Animals</p>
-                        <div className="right-header-create">
+                        <div className={style.right_header_create}>
                             <Image src={create} onClick = {() => {
                                 setDisplay(6);
                             }}/>
                             <p>Create New</p>
                         </div>
                     </div>            
-                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm) && animal.owner === userID)} />
+                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm) && animal.owner === userID)} users={users}/>
                 </div>
             );
         case 2:
             return (
                 <div>
-                    <div className="right-header">
+                    <div className={style.right_header_nocreate}>
                         <p>All training logs</p>
                     </div>
                     <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm))} />
@@ -64,16 +65,16 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
         case 3:
             return (
                 <div>
-                    <div className="right-header">
+                    <div className={style.right_header_nocreate}>
                         <p>All animals</p>
                     </div>
-                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm))} />
+                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm))} users={users}/>
                 </div>
             );
         case 4:
             return (
                 <div>
-                    <div className="right-header">
+                    <div className={style.right_header_nocreate}>
                         <p>All users</p>
                     </div>
                     <UserList users={users.filter(user => user.fullName.includes(searchTerm))} />
@@ -168,7 +169,7 @@ export default function MainPage(props) {
         fetchTrainingLogs();
         setLoading(false);
     }, [display]);
-    
+
     return (
         <div className="dashboard">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -177,12 +178,12 @@ export default function MainPage(props) {
                     <h1> Loading ... </h1>
                 </div>
             ):(
-                <div className="body">
-                    <div className="left">
+                <div className={style.body}>
+                    <div className={style.left}>
                         {user?<Sidebar display={display} setDisplay={setDisplay} user = {user} login={login} setLogin={setLogin}/> : null}
                         {/* { login? router.push('/login') : null} */}
                     </div>
-                    <div className="right">
+                    <div className={style.right}>
                         {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID)}
                     </div>
                 </div>

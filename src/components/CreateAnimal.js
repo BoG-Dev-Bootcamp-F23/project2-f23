@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import styles from './CreateAnimal.module.css';
+import styles from '../styles/CreateAnimal.module.css';
 import fetchAnimals from "../pages/MainPage"
 
 function isDateValid(dateStr) {
@@ -46,11 +46,11 @@ export default function CreateAnimal({display, setDisplay, userID}) {
     }
 
     return (
-        // <div className={styles.animalContainer}>
-        <div>
-            {/* <form onSubmit={handleSubmit} className={styles.formContainer}> */}
+        <div className={styles.animalContainer}>
+        {/* <div> */}
+            <form onSubmit={handleSubmit} className={styles.formContainer}>
             
-            <form onSubmit={handleSubmit} >
+            {/* <form onSubmit={handleSubmit} > */}
                 <label htmlFor="animalName">Animal Name:</label>
                 <input type="text" id="animalName" placeholder="Name" value={animalName} onChange={(e) => setAnimalName(e.target.value)} required />
 

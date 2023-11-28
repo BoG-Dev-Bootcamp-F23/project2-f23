@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import styles from './CreateTrainingLog.module.css';
+import styles from '../styles/CreateTrainingLog.module.css';
 
 function isDateValid(dateStr) {
     return !isNaN(new Date(dateStr));
@@ -45,10 +45,10 @@ export default function CreateTrainingLog({ display, setDisplay, userID, animals
     }
 
     return (
-        // <div className={styles.trainingLogContainer}>
-        <div>
-            {/* <form onSubmit={handleSubmit} className={styles.formContainer}> */}
-            <form onSubmit={handleSubmit} >
+        <div className={styles.trainingLogContainer}>
+        {/* <div> */}
+            <form onSubmit={handleSubmit} className={styles.formContainer}>
+            {/* <form onSubmit={handleSubmit} > */}
                 <label htmlFor="title">Title:</label>
                 <input type="text" id="title" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
 

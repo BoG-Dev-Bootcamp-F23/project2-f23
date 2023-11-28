@@ -1,0 +1,36 @@
+.flexbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+}
+
+.title {
+    color: black;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    border: none;
+    border-bottom: 3px solid #D21312;
+}
+
+.button {
+    background-color: #D21312;
+    border: 0px;
+}
+
+.bottomNote {
+    color: black;
+}
+
+.click {
+    cursor: pointer;
+}

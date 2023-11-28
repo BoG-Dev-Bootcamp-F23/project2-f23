@@ -10,6 +10,9 @@ import SearchBar from '../components/SearchBar.js'
 import UserList from '../components/UserList.js'
 import AnimalList from '../components/AnimalList.js';
 import TrainingLogList from '../components/TrainingLogList.js';
+
+import CreateAnimal from "../components/CreateAnimal"
+import CreateTrainingLog from "../components/CreateTrainingLog"
 // import api from '../services/api'; // Your API service file
 
 const adminAPI = 'http://localhost:3000/api/admin/'
@@ -76,10 +79,10 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <UserList users={users.filter(user => user.fullName.includes(searchTerm))} />
                 </div>
             );
-        // case 5:
-        //     return <CreateTrainingLog />
-        // case 6:
-        //     return <CreateAnimal />
+        case 5:
+            return <CreateTrainingLog display={display} setDisplay={setDisplay}/>
+        case 6:
+            return <CreateAnimal display={display} setDisplay={setDisplay} />
     }
 } 
 

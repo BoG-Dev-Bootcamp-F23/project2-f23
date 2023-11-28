@@ -20,19 +20,19 @@ export default function TrainingLogCard(props) {
     var month;
     var day;
 
-    async function getUser() {
-        await connectDB();
-        const userData = await User?.findById(user);
-        console.log(userData);
-        const name = userData.fullName;
-        console.log(name);
-        setUser(name);
-        console.log(realUser);
-    }
+    // async function getUser() {
+    //     await connectDB();
+    //     const userData = await User?.findById(user);
+    //     console.log(userData);
+    //     const name = userData.fullName;
+    //     console.log(name);
+    //     setUser(name);
+    //     console.log(realUser);
+    // }
 
-    useEffect(() => {
-        getUser();
-    },[]);
+    // useEffect(() => {
+    //     getUser();
+    // },[]);
 
     
     

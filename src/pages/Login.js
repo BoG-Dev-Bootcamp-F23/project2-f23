@@ -10,13 +10,17 @@ export default function Login() {
     async function handleSubmit() {
         const response = await login();
         console.log(response);
-        router.push({
-            pathname: '/MainPage',
-            query: {
-                userID: response.userID,
-                admin: response.admin
-            }
-        })
+        if (response.status) {
+            // error handling;
+        } else {
+            router.push({
+                pathname: '/MainPage',
+                query: {
+                    userID: response.userID,
+                    admin: response.admin
+                }
+            })
+        }
     }
 
     async function login() {
@@ -26,6 +30,7 @@ export default function Login() {
         })
         // throw new Error("here");
         const data = await result.json()
+        console.log(data);
         return data;
     }
 
@@ -47,27 +52,11 @@ export default function Login() {
  
                     e.preventDefault();                   
                     handleSubmit();
-                    console.log("aisdofjajsdlf")
-                    // const response = login();
-                    // console.log(response);
-                    // router.push({
-                    //     pathname: '/MainPage',
-                    //     query: {
-                    //         userID: response.userID,
-                    //         admin: response.admin
-                    //     }
-                    // })
+
                 }}>Log in</button>
             </form>
             <p className={styles.bottomNote}>Don't have an account? <a className={styles.click} onClick={() => {
-                const response = login();
-                router.push({
-                    pathname: '/MainPage',
-                    query: {
-                        userID: response.userID,
-                        admin: response.admin
-                    }
-                })
+                router.push('./CreateAccount');
             }}>Sign up</a></p>
         </div>
     );

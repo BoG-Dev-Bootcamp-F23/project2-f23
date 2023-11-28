@@ -14,7 +14,8 @@ export default async function verifyUser(data) {
         }
 
         const result = await bcrypt.compare(data.password, user.password)
-        if (result === null) {
+        console.log(result);
+        if (result === false) {
             throw new Error('Incorrect password')
         }
         

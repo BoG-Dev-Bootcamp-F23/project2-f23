@@ -9,8 +9,11 @@ export default async function handler(req, res) {
             console.log(result);
             return res.status(200).json(result)
         } catch (e) {
+            console.log(e);
             if (e.message.toString() === 'Error: User does not exist') {
-                return res.status(500).json({ status: 'User does not exist'})
+                return res.status(400).json({ status: 'User does not exist'})
+            } else if (e.message.toString() === 'Error: Incorrect password') {
+                return res.status(400).json({ status: 'Incorrect password'})
             } else {
                 return res.status(500).json({ status: 'Incorrect password' })
             }

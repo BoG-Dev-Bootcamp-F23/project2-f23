@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 import Account from "./Account"
 import AllAnimals from "../images/AllAnimals.png"
 import AllTraining from "../images/AllTraining.png"
@@ -12,13 +14,13 @@ export default function SideBar(props) {
             <div className={display === 0? "activate-sidebar-button" : "sidebar-button"} onClick = {() => {
                 setDisplay(0);
             }}>
-                <img src = {TrainingLogs} />
+                <Image src = {TrainingLogs} />
                 <p> Training logs</p>
             </div>
             <div className={display === 1? "activate-sidebar-button" : "sidebar-button"} onClick = {() => {
                 setDisplay(1);
             }}>
-                <img src = {Animals} />
+                <Image src = {Animals} />
                 <p> Animals</p>
             </div>
             {user.admin? (
@@ -27,19 +29,19 @@ export default function SideBar(props) {
                     <div className={display === 2? "activate-sidebar-button" : "sidebar-button"} onClick = {() => {
                         setDisplay(2);
                     }}>
-                        <img src = {AllTraining} />
+                        <Image src = {AllTraining} />
                         <p> All training</p>
                     </div>
                     <div className={display === 3? "activate-sidebar-button" : "sidebar-button"} onClick = {() => {
                         setDisplay(3);
                     }}>
-                        <img src = {AllAnimals} />
+                        <Image src = {AllAnimals} />
                         <p> All animals</p>
                     </div>
                     <div className={display === 4? "activate-sidebar-button" : "sidebar-button"} onClick = {() => {
                         setDisplay(4);
                     }}>
-                        <img src = {AllUsers} />
+                        <Image src = {AllUsers} />
                         <p> All users</p>
                     </div>
                 </div>

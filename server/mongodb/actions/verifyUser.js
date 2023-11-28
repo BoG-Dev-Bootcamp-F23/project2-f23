@@ -8,6 +8,6 @@ export default async function verifyUser(data) {
         return User.find({email: data.email, password: data.password});
     } catch (e) {
         console.log(e);
-        throw new Error("Unable to create user. Invalid data or database issue.");
+        throw new Error("Unable to verify user. Invalid data or database issue.");
     }
 }

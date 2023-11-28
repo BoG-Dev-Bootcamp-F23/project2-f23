@@ -85,7 +85,7 @@ export default function MainPage(props) {
     }, [users]);
     return (
         <div className="dashboard">
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             {loading?(
                 <div className = "loading">
                     <h1> Loading ... </h1>
@@ -93,7 +93,7 @@ export default function MainPage(props) {
             ):(
                 <div className="body">
                     <div className="left">
-                        {/* <Sidebar display={display} setDisplay={setDisplay} user = {user} login={login} setLogin={setLogin}/> */}
+                        {user?<Sidebar display={display} setDisplay={setDisplay} user = {user} login={login} setLogin={setLogin}/> : null}
                         {/* { login? router.push('/login') : null} */}
                     </div>
                     <div className="right">

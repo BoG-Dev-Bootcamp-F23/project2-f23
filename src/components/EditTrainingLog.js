@@ -43,11 +43,36 @@ export default function EditTrainingLog({ setDisplay, userID, animals, editLog, 
             //error handling
         }
     };
+
+    async function handleDelete() {
+        const param = {
+            trainingLogID: editLog._id,
+        };
+        const response = await deletelog(param);
+        console.log(response);
+        if (response.status === "success") {
+            setDisplay(0);
+        } else {
+            //error handling
+        }
+    }
     
     async function editlog(param) {
         console.log(param.user);
         const result = await fetch('/api/training', {
             method: 'PATCH',
+            body: JSON.stringify(param)
+        })
+        // throw new Error("here");
+        const data = await result.json();
+        console.log(data);
+        return data;
+    }
+
+    async function deletelog(param) {
+        // console.log(param.user);
+        const result = await fetch('/api/training', {
+            method: 'DELETE',
             body: JSON.stringify(param)
         })
         // throw new Error("here");
@@ -109,6 +134,11 @@ export default function EditTrainingLog({ setDisplay, userID, animals, editLog, 
                 <button onClick = {() => {
                     setDisplay(0);
                 }}>Cancel</button>
+
+                <button onClick = {(e) => {
+                    e.preventDefault();
+                    handleDelete();
+                }}> Delete </button>
 
                 <button type="submit" onClick = {(e) => {
                     e.preventDefault();

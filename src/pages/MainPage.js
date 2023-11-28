@@ -178,7 +178,7 @@ export default function MainPage(props) {
         <div className="dashboard">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             {loading?(
-                <div className = "loading">
+                <div className = {style.loading}>
                     <h1> Loading ... </h1>
                 </div>
             ):(

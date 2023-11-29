@@ -23,9 +23,13 @@
 import Image from 'next/image';
 import styles from "../styles/AnimalCard.module.css";
 import defaultImage from "../images/defaultImage.png";
+import {useAuth} from "../contexts/useAuth"
 
-export default function AnimalCard({ animal, users }) {
-    const owner = users.filter(user => user._id === animal.owner)[0];
+export default function AnimalCard({ animal }) {
+
+    const {users} = useAuth();
+    
+    const owner = users?.filter(user => user._id === animal.owner)[0];
 
     return (
         <div className={styles.animal}>
@@ -45,7 +49,7 @@ export default function AnimalCard({ animal, users }) {
                 </div>
                 <div className={styles.infoRight}>
                     <div className={styles.animalInfo}>{animal.name} - {animal.breed}</div>
-                    <div className={styles.trainingInfo}>{owner.fullName} • Trained: {animal.hoursTrained} hours</div>
+                    <div className={styles.trainingInfo}>{owner?.fullName} • Trained: {animal.hoursTrained} hours</div>
                 </div>
             </div>
         </div>

@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import styles from '../styles/CreateTrainingLog.module.css';
+import {useAuth} from "../contexts/useAuth";
 
 function isDateValid(dateStr) {
     return !isNaN(new Date(dateStr));
 }
 
-export default function CreateTrainingLog({ setDisplay, userID, animals}) {
+export default function CreateTrainingLog() {
+
+    const {setDisplay, loginUser, animals} = useAuth();
+
+    const filteredAnimals = animals.filter((animal) => {
+        return animal.owner === loginUser;
+    });
+
     const [title, setTitle] = useState('');
     const [animal, setAnimal] = useState('');
     const [hours, setHours] = useState('');
@@ -16,7 +24,7 @@ export default function CreateTrainingLog({ setDisplay, userID, animals}) {
 
     async function handleSubmit() {
         const param = {
-            user: userID,
+            user: loginUser,
             animal,
             title,
             date: `${month} ${day}, ${year}`,
@@ -43,10 +51,6 @@ export default function CreateTrainingLog({ setDisplay, userID, animals}) {
         console.log(data);
         return data;
     }
-
-    const filteredAnimals = animals.filter((animal) => {
-        return animal.owner === userID;
-    });
 
     return (
         <div className={styles.trainingLogContainer}>

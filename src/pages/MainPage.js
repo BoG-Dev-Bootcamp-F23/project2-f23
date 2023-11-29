@@ -25,21 +25,21 @@ const userAPI = 'http://localhost:3000/api/user/'
 const animalAPI = 'http://localhost:3000/api/animal/'
 const trainingAPI = 'http://localhost:3000/api/training/'
 
-function renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID, editLog, setEditLog) {
+function renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID) {
     switch (display) {
         case 0:
             return (
                 <div>
                     <div className={style.right_header_yescreate}>
                         <p> Training logs</p>
-                        <div className={style.right_header_create}>
-                            <Image src={create} onClick = {() => {
-                                setDisplay(5);
-                            }}/>
+                        <div className={style.createButton} onClick = {() => {
+                            setDisplay(5);
+                        }}>
+                            <Image src={create} />
                             <p>Create New</p>
                         </div>
                     </div>
-                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm) && log.user === userID)} setEditLog={setEditLog} setDisplay={setDisplay} />
+                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm) && log.user === userID)} />
                 </div>
             );
         case 1:
@@ -47,14 +47,14 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                 <div>
                     <div className={style.right_header_yescreate}>
                         <p> Animals</p>
-                        <div className={style.createButton}>
-                            <Image src={create} onClick = {() => {
-                                setDisplay(6);
-                            }}/>
+                        <div className={style.createButton} onClick = {() => {
+                            setDisplay(6);
+                        }} >
+                            <Image src={create} />
                             <p>Create New</p>
                         </div>
                     </div>            
-                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm) && animal.owner === userID)} users={users}/>
+                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm) && animal.owner === userID)} />
                 </div>
             );
         case 2:
@@ -63,7 +63,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_nocreate}>
                         <p>All training logs</p>
                     </div>
-                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm))} setEditLog={setEditLog} setDisplay={setDisplay} />
+                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm))} />
                 </div>
             );
         case 3:
@@ -72,7 +72,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_nocreate}>
                         <p>All animals</p>
                     </div>
-                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm))} users={users}/>
+                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm))} />
                 </div>
             );
         case 4:
@@ -85,11 +85,11 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                 </div>
             );
         case 5:
-            return <CreateTrainingLog setDisplay={setDisplay} userID={userID} animals={animals}/>
+            return <CreateTrainingLog />
         case 6:
-            return <CreateAnimal display={display} setDisplay={setDisplay} userID={userID}/>
+            return <CreateAnimal />
         case 7:
-            return <EditTrainingLog setDisplay={setDisplay} userID={userID} animals={animals} editLog={editLog} setEditLog={setEditLog} />
+            return <EditTrainingLog />
     }
 } 
 
@@ -102,18 +102,12 @@ export default function MainPage() {
     // const userID = props.userID;
     
     const router = useRouter();
-    const {loginUser, setLoginUser} = useAuth();
+    const {loginUser, setLoginUser, users, setUsers, animals, setAnimals, trainingLogs, setTrainingLogs, display, setDisplay, editLog, setEditLog, searchTerm, setSearchTerm} = useAuth();
     const [loading, setLoading] = useState(true);
-    const [display, setDisplay] = useState(0);
     const [login, setLogin] = useState(1);
 
     const [user, setUser] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [animals, setAnimals] = useState([]);
-    const [trainingLogs, setTrainingLogs] = useState([]);
-    const [editLog, setEditLog] = useState(null);
 
-    const [searchTerm, setSearchTerm] = useState('');
 
     // Fetch animals and training logs from the API
     useEffect(() => {
@@ -185,22 +179,36 @@ export default function MainPage() {
             <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&display=swap" rel="stylesheet" />
         </Head>
         <div className={style.dashboard}>
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            {loading?(
-                <div className = {style.loading}>
-                    <h1> Loading ... </h1>
-                </div>
-            ):(
-                <div className={style.body}>
-                    <div className={style.left}>
-                        {user?<Sidebar display={display} setDisplay={setDisplay} user = {user} login={login} setLogin={setLogin}/> : null}
-                        {/* { login? router.push('/login') : null} */}
+            <SearchBar />
+            {
+                loginUser? (
+                    loading?(
+                        <div className = {style.loading}>
+                            <h1> Loading ... </h1>
+                        </div>
+                    ):(
+                        <div className={style.body}>
+                            <div className={style.left}>
+                                {user?<Sidebar /> : null}
+                                {/* { login? router.push('/login') : null} */}
+                            </div>
+                            <div className={style.right}>
+                                {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, loginUser, editLog, setEditLog)}
+                            </div>
+                        </div>
+                    )
+                ) : (
+                    <div className={style.notLogedIn}>
+                        <h1>You're not logged in!</h1>
+                        <h3 onClick={() => {
+                            router.push({
+                                pathname: '/Login'
+                            })
+                        }}>Click to go back to log in page</h3>
                     </div>
-                    <div className={style.right}>
-                        {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, loginUser, editLog, setEditLog)}
-                    </div>
-                </div>
-            )}
+                )
+            }
+
         </div>
         </>
     );

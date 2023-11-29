@@ -3,9 +3,10 @@ import Image from "next/image";
 import paw from "../images/paw.jpg";
 import Head from 'next/head';
 import styles from '../styles/SearchBar.module.css';
+import { useAuth } from "../contexts/useAuth"
 
 export default function SearchBar(props) {
-    const { searchTerm, setSearchTerm } = props;
+    const { searchTerm, setSearchTerm } = useAuth();
     return (
         <div className={styles.bar}>
             <Head>

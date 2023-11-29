@@ -9,6 +9,7 @@
 .formContainer {
     display: flex;
     flex-direction: column;   
+    color: #000;
 }
 
 .label {

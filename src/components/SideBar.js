@@ -16,10 +16,16 @@ import PeopleStroke from "../images/people-stroke.png"
 
 import logoutIcon from '../images/logout.png';
 
-export default function SideBar(props) {
-    const { display, setDisplay, user } = props;
+import {useAuth} from "../contexts/useAuth";
+
+export default function SideBar() {
+    // display={display} setDisplay={setDisplay} user = {user}
+    const { display, setDisplay, users, loginUser, setLoginUser} = useAuth();
+    const user = users.filter(user => user._id === loginUser)[0];
+
     const [hovered, setHovered] = useState(-1);
-    const admin = user.admin ? "Admin" : "User";
+    console.log("sidebar 0");
+    const admin = user?.admin ? "Admin" : "User";
     const router = useRouter();
 
     return (
@@ -58,7 +64,7 @@ export default function SideBar(props) {
                         <p> Animals</p>
                 </div>
                 </div>    
-                {user.admin? (
+                {user?.admin? (
                     <div className={style.adminOnly}>
                         <p className={style.adminHeader}> Admin access</p>
                         <div className={display === 2? style.activateSidebarButton : style.sidebarButton} 
@@ -105,16 +111,20 @@ export default function SideBar(props) {
                 <div className={style.userFooter}>
                     <div className={style.nameFooter}>
                         <div className ={style.icon}>
-                            <p className={style.initial}> {user.fullName.toUpperCase()[0]} </p>
+                            <p className={style.initial}> {user?.fullName.toUpperCase()[0]} </p>
                         </div>
                         <div className={style.content}>
-                            <p className={style.name}> {user.fullName} </p>
+                            <p className={style.name}> {user?.fullName} </p>
                             <p className={style.footer}> {admin}</p>
                         </div>
                     </div>
                     <div className = {style.logout}>
                     <Image className={style.logoutbutton} src={logoutIcon} alt="Log Out" onClick = {() => {
+                        console.log("sidebar here 1");
+                        setLoginUser();
+                        console.log("sidebar here 2");
                         router.push('/Login');
+                        console.log("sidebar here 3");
                     }}/>
                 </div>
             </div>

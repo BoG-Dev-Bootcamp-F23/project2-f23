@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import styles from '../styles/CreateAnimal.module.css';
 import fetchAnimals from "../pages/MainPage"
+import { useAuth } from "../contexts/useAuth"
 
 function isDateValid(dateStr) {
     return !isNaN(new Date(dateStr));
 }
 
-export default function CreateAnimal({display, setDisplay, userID}) {
+export default function CreateAnimal() {
+
+    const {setDisplay, loginUser} = useAuth();
+
     const [animalName, setAnimalName] = useState('');
     const [breed, setBreed] = useState('');
     const [hours, setHours] = useState('');
@@ -20,7 +24,7 @@ export default function CreateAnimal({display, setDisplay, userID}) {
         const param = {
             name: animalName,
             breed,
-            owner: userID,
+            owner: loginUser,
             hoursTrained: hours,
             profilePicture: notes,
         };

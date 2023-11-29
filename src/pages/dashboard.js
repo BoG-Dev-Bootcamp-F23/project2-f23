@@ -214,7 +214,7 @@ export default function DashboardPage( {userID}) {
                         </div>
                     )
                 ) : (
-                    <div className={style.notLogedIn}>
+                    <div className={style.notLoggedIn}>
                         <h1>You're not logged in!</h1>
                         <h3 onClick={() => {
                             router.push({

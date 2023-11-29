@@ -5,8 +5,7 @@ import { useState, useEffect } from 'react';
 import TrainingLogCard from '@/components/TrainingLogCard';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
-
-
+import { useAuth } from '@/contexts/useAuth';
 
 export default function Home() {
 

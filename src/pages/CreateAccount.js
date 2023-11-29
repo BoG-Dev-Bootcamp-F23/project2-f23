@@ -116,9 +116,9 @@ export default function CreateAccount() {
                         onChange={(e) => setConfirm(e.target.value)} 
                         onBlur={handleBlur}
                         required></input>
-                    <div className={styles.checkbox}><label className={styles.line}><input type="checkbox" 
-                        onChange={(e) => setAdmin(!admin)} />
-                        <div className={styles.adminText}>Admin access</div></label></div>
+                    <label className={styles.line}>
+                        <input className={styles.checkbox} type="checkbox" onChange={(e) => setAdmin(!admin)} />
+                        <div className={styles.adminText}>Admin access</div></label>
                     <button className={styles.button} type="submit">Sign up</button>
                 </form>
                 <p className={styles.bottomNote}>Already have an account? <a className={styles.click} onClick={() => {

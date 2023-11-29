@@ -15,6 +15,41 @@
     font-size: 42px;
 }
 
+.checkbox {
+    appearance: none;
+    background-color: white;
+    border: 2px solid #D21312;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+    background-color: #F2F6FA;
+}
+
+.checkbox:checked {
+    background-color: white;
+}
+
+.checkbox:checked:after {
+    background-color: #D21312;
+    /* content: 'h'; */
+    /* display: none; */
+}
+
+/* .checkbox:checked:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+} */
+
 .adminText {
     color: black;
     font-family: 'Heebo', sans-serif;
@@ -28,8 +63,7 @@
     flex-direction: row;
     align-items: center;
     height: 40px;
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin: 12px 0px;
 }
 
 .form {

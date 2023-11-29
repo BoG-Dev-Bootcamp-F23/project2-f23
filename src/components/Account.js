@@ -13,7 +13,7 @@ export default function Account(props) {
     return (
         <div>
             <div className = "icon">
-                <p> {user.fullName[0]} </p>
+                <p> {user.fullName[0].toUpperCase()} </p>
             </div>
             <div className = "name">
                 <p> {user.fullName} </p>

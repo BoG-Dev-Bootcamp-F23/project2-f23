@@ -39,10 +39,6 @@
     font-size: 18px;
 }
 
-.input:focus::placeholder {
-    color: transparent;
-}
-
 .button {
     margin-top: 50px;
     background-color: #D21312;

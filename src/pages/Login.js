@@ -9,14 +9,18 @@ export default function Login() {
     const {loginUser, setLoginUser} = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
     const router = useRouter();
 
     const handleSubmit = async(e) => {
         e.preventDefault();
         const response = await login();
-        if (response.status) {
-            // error handling;
+        if (response.status === 'User does not exist') {
+            setMessage('Invalid email')
+        } else if (response.status === 'Incorrect password') {
+            setMessage('Invalid password')
         } else {
+            setMessage('')
             setLoginUser(response.userID);
             router.push({
                 pathname: '/MainPage'
@@ -25,13 +29,17 @@ export default function Login() {
     }
 
     async function login() {
-        const result = await fetch('/api/user/verify', {
-            method: 'POST',
-            body: JSON.stringify({ email, password })
-        })
-        // throw new Error("here");
-        const data = await result.json()
-        return data;
+        try {
+            const result = await fetch('/api/user/verify', {
+                method: 'POST',
+                body: JSON.stringify({ email, password })
+            })
+            const data = await result.json()
+            return data;
+        } catch (e) {
+            console.log('in try catch')
+            console.log(e)
+        }
     }
 
     return (
@@ -55,6 +63,9 @@ export default function Login() {
                         placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)} 
                         required></input>
+                    {message.length>0 &&
+                        <p className={styles.errorMessage}>{message}</p>
+                    }
                     <button className={styles.button} type="submit">Log in</button>
                 </form>
                 <p className={styles.bottomNote}>Don't have an account? <a className={styles.click} onClick={() => {

@@ -9,29 +9,56 @@ export default function CreateAccount() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');
+
+    const [nameValid, setNameValid] = useState(true);
+    const [emailValid, setEmailValid] = useState(true);
+    const [match, setMatch] = useState(true);
+
     const [admin, setAdmin] = useState(false);
     const router = useRouter();
 
     const handleBlur = (event) => {
+        if (password !== confirm && password.length > 0 && confirm.length > 0) {
+            setMatch(false)
+        } else {
+            setMatch(true)
+        }
+    }
+
+    const checkName = (event) => {
         if (event.target.validity.patternMismatch) {
-            // error handling
+            event.preventDefault()
+            setNameValid(false)
+        } else {
+            setNameValid(true)
+        }
+    }
+
+    const checkEmail = (event) => {
+        if (event.target.validity.patternMismatch) {
+            event.preventDefault()
+            setEmailValid(false)
+        } else {
+            setEmailValid(true)
         }
     }
 
     const handleSubmit = async(e) => {
         try {
             e.preventDefault()
-            await createUser()
-            router.push('/Login')
+            if (password === confirm) {
+                setMatch(true)
+                await createUser()
+                router.push('/Login')
+            } else {
+                setMatch(false)
+            }
         } catch (e) {
 
         }
     }
 
     async function createUser() {
-        if (password !== confirm) {
-            // error handling
-        }
         const response = await fetch('/api/user', {
             method: 'POST',
             body: JSON.stringify({ fullName, email, password, admin })
@@ -61,31 +88,37 @@ export default function CreateAccount() {
                         placeholder="Full Name"
                         pattern="^[a-zA-Z]+(\s[a-zA-Z]+)+"
                         onChange={(e) => setFullName(e.target.value)}
-                        onBlur={handleBlur}
+                        onBlur={checkName}
+                        style={{backgroundColor: nameValid ? 'white' : '#f7bac6'}}
                         required></input>
                     <input type="email" 
                         className={styles.input}
                         id="email" 
                         placeholder="Email"
+                        pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+"
                         onChange={(e) => setEmail(e.target.value)} 
-                        onBlur={handleBlur}
+                        onBlur={checkEmail}
+                        style={{backgroundColor: emailValid ? 'white' : '#f7bac6'}}
                         required></input>
                     <input type="password" 
                         className={styles.input}
                         id="password" 
                         placeholder="Password"
+                        style={{backgroundColor: match ? 'white' : '#f7bac6'}}
                         onChange={(e) => setPassword(e.target.value)} 
+                        onBlur={handleBlur}
                         required></input>
                     <input type="password" 
                         className={styles.input}
                         id="confirmPassword" 
                         placeholder="Confirm Password"
+                        style={{backgroundColor: match ? 'white' : '#f7bac6'}}
                         onChange={(e) => setConfirm(e.target.value)} 
+                        onBlur={handleBlur}
                         required></input>
-                    <div className={styles.checkbox}><label className={styles.adminText}><input type="checkbox" 
-                        className={styles.input}
-                        onChange={(e) => setAdmin(!admin)} />
-                        Admin access</label></div>
+                    <label className={styles.line}>
+                        <input className={styles.checkbox} type="checkbox" onChange={(e) => setAdmin(!admin)} />
+                        <div className={styles.adminText}>Admin access</div></label>
                     <button className={styles.button} type="submit">Sign up</button>
                 </form>
                 <p className={styles.bottomNote}>Already have an account? <a className={styles.click} onClick={() => {

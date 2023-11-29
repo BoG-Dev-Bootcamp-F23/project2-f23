@@ -15,13 +15,55 @@
     font-size: 42px;
 }
 
+.checkbox {
+    appearance: none;
+    background-color: white;
+    border: 2px solid #D21312;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+    background-color: #F2F6FA;
+}
+
+.checkbox:checked {
+    background-color: white;
+}
+
+.checkbox:checked:after {
+    background-color: #D21312;
+    /* content: 'h'; */
+    /* display: none; */
+}
+
+/* .checkbox:checked:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+} */
+
 .adminText {
     color: black;
     font-family: 'Heebo', sans-serif;
     font-weight: 300;
-    top: -1px;
-    margin: 0px;
-    padding: 0px;
+    font-size: 18px;
+    margin-left: 8px;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    margin: 12px 0px;
 }
 
 .form {
@@ -39,6 +81,7 @@
     font-size: 18px;
     height: 40px;
     margin-top: 15px;
+    background-color: white;
 }
 
 .input::placeholder {
@@ -62,6 +105,11 @@
     font-family: 'Heebo', sans-serif;
     font-weight: 500;
     font-size: 30px;
+}
+
+.button:hover {
+    background-color: #c41312;
+    cursor: pointer;
 }
 
 .bottomNote {

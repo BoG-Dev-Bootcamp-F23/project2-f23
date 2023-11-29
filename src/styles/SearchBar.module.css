@@ -6,6 +6,7 @@
     flex-direction: row;
     height: 64px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    z-index: 100;
 }
 
 .image {
@@ -21,6 +22,7 @@
     font-size: 36px;
     margin-left: 8px;
     padding: 0px;
+    color: black;
 }
 
 .outerbox {
@@ -61,5 +63,4 @@
     font-family: 'Heebo', sans-serif;
     font-weight: 500;
     font-size: 18px;
-    padding-left: 10px;
 }

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import TitleBar from '../components/TitleBar';
 
-export default function CreateAccount() {
+export default function createaccount() {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -49,7 +49,7 @@ export default function CreateAccount() {
             if (password === confirm) {
                 setMatch(true)
                 await createUser()
-                router.push('/Login')
+                router.push('/login')
             } else {
                 setMatch(false)
             }
@@ -122,7 +122,7 @@ export default function CreateAccount() {
                     <button className={styles.button} type="submit">Sign up</button>
                 </form>
                 <p className={styles.bottomNote}>Already have an account? <a className={styles.click} onClick={() => {
-                    router.push('/Login')
+                    router.push('/login')
                 }}>Sign in</a></p>
             </div>
         </div>

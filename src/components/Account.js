@@ -25,7 +25,7 @@ export default function Account(props) {
             <div className = "logout">
                 <Image src={logoutIcon} alt="Log Out" onClick = {() => {
                     setLoginUser(null);
-                    router.push('/Login');
+                    router.push('/login');
                 }}/>
             </div>
         </div>

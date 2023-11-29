@@ -24,7 +24,6 @@ export default function SideBar() {
     const user = users.filter(user => user._id === loginUser)[0];
 
     const [hovered, setHovered] = useState(-1);
-    console.log("sidebar 0");
     const admin = user?.admin ? "Admin" : "User";
     const router = useRouter();
 
@@ -120,11 +119,8 @@ export default function SideBar() {
                     </div>
                     <div className = {style.logout}>
                     <Image className={style.logoutbutton} src={logoutIcon} alt="Log Out" onClick = {() => {
-                        console.log("sidebar here 1");
                         setLoginUser();
-                        console.log("sidebar here 2");
-                        router.push('/Login');
-                        console.log("sidebar here 3");
+                        router.push('/login');
                     }}/>
                 </div>
             </div>

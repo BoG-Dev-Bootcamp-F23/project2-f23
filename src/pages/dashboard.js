@@ -93,7 +93,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
     }
 } 
 
-export default function MainPage() {
+export default function dashboard() {
     // State for storing animals and training logs
     // const user = props.user;
     // const user = null;
@@ -202,7 +202,7 @@ export default function MainPage() {
                         <h1>You're not logged in!</h1>
                         <h3 onClick={() => {
                             router.push({
-                                pathname: '/Login'
+                                pathname: '/login'
                             })
                         }}>Click to go back to log in page</h3>
                     </div>

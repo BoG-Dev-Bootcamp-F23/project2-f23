@@ -5,7 +5,7 @@ import Head from 'next/head';
 import TitleBar from '../components/TitleBar';
 import {useAuth} from "../contexts/useAuth"
 
-export default function Login() {
+export default function login() {
     const {loginUser, setLoginUser} = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,7 +23,7 @@ export default function Login() {
             setMessage('')
             setLoginUser(response.userID);
             router.push({
-                pathname: '/MainPage'
+                pathname: '/dashboard'
             })
         }
     }
@@ -69,7 +69,7 @@ export default function Login() {
                     <button className={styles.button} type="submit">Log in</button>
                 </form>
                 <p className={styles.bottomNote}>Don't have an account? <a className={styles.click} onClick={() => {
-                    router.push('./CreateAccount');
+                    router.push('./createaccount');
                 }}>Sign up</a></p>
             </div>
         </div>

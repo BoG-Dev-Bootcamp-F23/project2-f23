@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from '../styles/CreateAnimal.module.css';
-import fetchAnimals from "../pages/MainPage"
 import { useAuth } from "../contexts/useAuth"
 
 function isDateValid(dateStr) {

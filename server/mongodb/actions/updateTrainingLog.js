@@ -5,16 +5,17 @@ import updateAnimal from "./updateAnimal.js";
 export default async function updateTrainingLog(data) {
     try {
         await connectDB();
-        const oldTrainingLog = await TrainingLog.findById(data.trainingLogID);
+        const { trainingLogID, ...updateData} = data;
+        const oldTrainingLog = await TrainingLog.findById(trainingLogID);
         const oldHours = oldTrainingLog.hours;
         const updatedTrainingLog = await TrainingLog.findByIdAndUpdate(
-            data.trainingLogID, { "hours": data.newHours }, { new: true }
+            trainingLogID, updateData, { new: true }
         );
         if (updatedTrainingLog === null) {
             throw new Error("Training Log Not Found");
         }
 
-        const difference = data.newHours - oldHours;
+        const difference = updatedTrainingLog.hours - oldHours;
         await updateAnimal({ "animalID": updatedTrainingLog.animal, "addValue": difference })
 
         return updatedTrainingLog;

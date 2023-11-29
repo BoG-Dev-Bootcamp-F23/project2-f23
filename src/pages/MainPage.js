@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from "next/image.js"
 import style from "../styles/MainPage.module.css"
+import Head from 'next/head';
 
 import create from "../images/create.png"
 
@@ -14,6 +15,7 @@ import TrainingLogList from '../components/TrainingLogList.js';
 
 import CreateAnimal from "../components/CreateAnimal"
 import CreateTrainingLog from "../components/CreateTrainingLog"
+import EditTrainingLog from "../components/EditTrainingLog"
 // import api from '../services/api'; // Your API service file
 
 const adminAPI = 'http://localhost:3000/api/admin/'
@@ -21,7 +23,7 @@ const userAPI = 'http://localhost:3000/api/user/'
 const animalAPI = 'http://localhost:3000/api/animal/'
 const trainingAPI = 'http://localhost:3000/api/training/'
 
-function renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID) {
+function renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID, editLog, setEditLog) {
     switch (display) {
         case 0:
             return (
@@ -35,7 +37,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                             <p>Create New</p>
                         </div>
                     </div>
-                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm) && log.user === userID)} />
+                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm) && log.user === userID)} setEditLog={setEditLog} setDisplay={setDisplay} />
                 </div>
             );
         case 1:
@@ -43,7 +45,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                 <div>
                     <div className={style.right_header_yescreate}>
                         <p> Animals</p>
-                        <div className={style.right_header_create}>
+                        <div className={style.createButton}>
                             <Image src={create} onClick = {() => {
                                 setDisplay(6);
                             }}/>
@@ -59,7 +61,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_nocreate}>
                         <p>All training logs</p>
                     </div>
-                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm))} />
+                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm))} setEditLog={setEditLog} setDisplay={setDisplay} />
                 </div>
             );
         case 3:
@@ -81,9 +83,11 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                 </div>
             );
         case 5:
-            return <CreateTrainingLog display={display} setDisplay={setDisplay} userID={userID} animals={animals}/>
+            return <CreateTrainingLog setDisplay={setDisplay} userID={userID} animals={animals}/>
         case 6:
             return <CreateAnimal display={display} setDisplay={setDisplay} userID={userID}/>
+        case 7:
+            return <EditTrainingLog setDisplay={setDisplay} userID={userID} animals={animals} editLog={editLog} setEditLog={setEditLog} />
     }
 } 
 
@@ -94,7 +98,7 @@ export default function MainPage(props) {
     // let user;
     // const admin = props.admin;
     // const userID = props.userID;
-
+    
     const router = useRouter();
     const {userID, admin} = router.query;
     const [loading, setLoading] = useState(true);
@@ -105,6 +109,7 @@ export default function MainPage(props) {
     const [users, setUsers] = useState([]);
     const [animals, setAnimals] = useState([]);
     const [trainingLogs, setTrainingLogs] = useState([]);
+    const [editLog, setEditLog] = useState(null);
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -171,10 +176,16 @@ export default function MainPage(props) {
     }, [display]);
 
     return (
-        <div className="dashboard">
+        <>
+        <Head>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&display=swap" rel="stylesheet" />
+        </Head>
+        <div className={style.dashboard}>
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             {loading?(
-                <div className = "loading">
+                <div className = {style.loading}>
                     <h1> Loading ... </h1>
                 </div>
             ):(
@@ -184,10 +195,11 @@ export default function MainPage(props) {
                         {/* { login? router.push('/login') : null} */}
                     </div>
                     <div className={style.right}>
-                        {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID)}
+                        {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID, editLog, setEditLog)}
                     </div>
                 </div>
             )}
         </div>
+        </>
     );
 }

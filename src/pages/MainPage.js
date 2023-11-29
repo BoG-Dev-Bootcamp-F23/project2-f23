@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useAuth } from "../contexts/useAuth"
+
 import Image from "next/image.js"
 import style from "../styles/MainPage.module.css"
 
@@ -90,7 +92,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
     }
 } 
 
-export default function MainPage(props) {
+export default function MainPage() {
     // State for storing animals and training logs
     // const user = props.user;
     // const user = null;
@@ -99,7 +101,7 @@ export default function MainPage(props) {
     // const userID = props.userID;
 
     const router = useRouter();
-    const {userID, admin} = router.query;
+    const {loginUser, setLoginUser} = useAuth();
     const [loading, setLoading] = useState(true);
     const [display, setDisplay] = useState(0);
     const [login, setLogin] = useState(1);
@@ -142,9 +144,9 @@ export default function MainPage(props) {
     }, []);
 
     useEffect(() => {
-        console.log(userID);
-        setUser(users.filter(user => user._id === userID)[0]);
-        console.log(users.filter(user => user._id === userID));
+        console.log(loginUser);
+        setUser(users.filter(user => user._id === loginUser)[0]);
+        console.log(users.filter(user => user._id === loginUser));
     }, [users]);
 
     useEffect(() => {
@@ -188,7 +190,7 @@ export default function MainPage(props) {
                         {/* { login? router.push('/login') : null} */}
                     </div>
                     <div className={style.right}>
-                        {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID, editLog, setEditLog)}
+                        {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, loginUser, editLog, setEditLog)}
                     </div>
                 </div>
             )}

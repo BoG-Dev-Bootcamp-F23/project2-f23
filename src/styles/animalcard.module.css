@@ -1,8 +1,7 @@
 /* AnimalCard.module.css */
+
 .animalCard {
-    display: flex;
-    flex-direction: column;
-    margin: 60px;
+    margin-left: 100px;
     width: 400px;
     height: 374px; /* Adjust the height to fit the entire image */
     border-radius: 10px;
@@ -10,14 +9,13 @@
 
 .imageHolder {
     padding-top: 5%;
+    height: 80%;
     overflow: hidden;
  /* Add this to clip the rounded corners */
 }
 
 .animalCardPhoto {
-    margin-top: 20px;
     width: 100%;
-    overflow: scroll;
     border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
 }
 .circle {
@@ -34,7 +32,7 @@
     color: white;
     font-size: 24px; /* Adjust the font size of your letter */
     font-weight: bold; /* Adjust the font weight of your letter */
-}
+  }
 
 .animalCardInfo {
     font-family: sans-serif;
@@ -43,7 +41,8 @@
     flex-direction: row;
     align-items: center;
     text-align: center;
-    padding: 2%;
+    padding-left: 2%;
+    z-index: 3;
     background-color: white;
     border-radius: 0 0 10px 10px; /* Rounded corners only at the bottom */
     height: 20%; /* Adjust the height for the info container */
@@ -51,7 +50,6 @@
 
 .animalCardText {
     margin-left: 10%;
-    padding-top: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;

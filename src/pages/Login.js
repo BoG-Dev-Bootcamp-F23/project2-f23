@@ -1,22 +1,52 @@
 import { useState, useEffect } from 'react';
 import styles from "../styles/Login.module.css";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Header from '@/components/Header';
+import { useAuth } from '@/contexts/useAuth';
 
 export default function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { setUserID, setAdmin, setFullName } = useAuth();
+    const router = useRouter();
+
+    async function handleClick(email, password, router) {
+        const passwordBox = document.getElementById("passwordBox");
+        try {
+            const response = await fetch("/api/user/verify", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(Object.keys(data).length > 0);
+            if (Object.keys(data).length > 0) {
+                console.log(data.id);
+                setUserID(data.id);
+                setAdmin(data.admin);
+                setFullName(data.fullName);
+                router.push("/home");
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     return (
         <div className={styles.container}>
-            {/* <div className={styles.navbar}>
-                <img src="pawprint.png" className={styles.pawprint} />
-                <h1>Progress</h1>
-            </div> */}
             <Header></Header>
             <div className={styles.loginBox}>
                 <h1>Login</h1>
-                <input type="email" placeholder='Email' className={styles.input} />
-                <input type="password" placeholder='Password' className={styles.input} />
-                <button type="button" className={styles.logInButton}>Log In</button>
+                <input type="email" value={email} onChange={e => { setEmail(e.currentTarget.value); }} placeholder='Email' className={styles.input} />
+                <input id="passwordBox" type="password" value={password} onChange={e => { setPassword(e.currentTarget.value); }} placeholder='Password' className={styles.input} />
+                <button type="button" className={styles.logInButton} onClick={() => {handleClick(email, password, router)}}>Log In</button>
                 <p>Don't have an account? <Link href="create-account"><b className={styles.signUp}>Sign up</b></Link></p>
             </div>
             <div className={styles.footer}>

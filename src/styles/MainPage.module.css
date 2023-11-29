@@ -1,6 +1,7 @@
 .body {
     display: flex;
     flex-direction: row;
+    padding: 70px 0px 0px 0px;
 }
 
 .right {

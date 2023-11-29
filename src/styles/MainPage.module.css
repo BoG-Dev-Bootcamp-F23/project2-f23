@@ -1,21 +1,41 @@
 .body {
     display: flex;
     flex-direction: row;
-    padding: 70px 0px 0px 0px;
-}
-
-.right {
-    flex-grow: 1;
+    font-family: "Heebo", sans-serif;
+    flex: 1;
+    overflow: hidden;
 }
 
 .right_header_yescreate {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-top: 100px;
+    padding-left: 100px;
+    padding-right: 50px;
 }
 
-.right_header_create {
+.right_header_nocreate {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 100px;
 }
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.left {
+    flex: 0 0 250px;
+    background-color: white;
+}
+
+.right {
+    flex: 1;
+    overflow-y: auto;
+    background-color: #fff;
+}
+    

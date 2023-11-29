@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from "next/image.js"
 import style from "../styles/MainPage.module.css"
+import Head from 'next/head';
 
 import create from "../images/create.png"
 
@@ -44,7 +45,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                 <div>
                     <div className={style.right_header_yescreate}>
                         <p> Animals</p>
-                        <div className={style.right_header_create}>
+                        <div className={style.createButton}>
                             <Image src={create} onClick = {() => {
                                 setDisplay(6);
                             }}/>
@@ -97,7 +98,7 @@ export default function MainPage(props) {
     // let user;
     // const admin = props.admin;
     // const userID = props.userID;
-
+    
     const router = useRouter();
     const {userID, admin} = router.query;
     const [loading, setLoading] = useState(true);
@@ -175,7 +176,13 @@ export default function MainPage(props) {
     }, [display]);
 
     return (
-        <div className="dashboard">
+        <>
+        <Head>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&display=swap" rel="stylesheet" />
+        </Head>
+        <div className={style.dashboard}>
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             {loading?(
                 <div className = {style.loading}>
@@ -193,5 +200,6 @@ export default function MainPage(props) {
                 </div>
             )}
         </div>
+        </>
     );
 }

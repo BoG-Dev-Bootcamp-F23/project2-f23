@@ -22,12 +22,20 @@
 import React from 'react';
 import styles from '../styles/TrainingCard.module.css'; // assuming CSS module
 
-export default function TrainingCard({ log }) {
+export default function TrainingCard({ log, setEditLog, setDisplay }) {
+    const date = new Date(log.date);
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
     return (
         <div className={styles.card}>
             <div className={styles.dateBadge}>
-                <span className={styles.date}>{log.date}</span>
-                <span className={styles.monthYear}>{log.monthYear}</span>
+                {/* <span className={styles.date}>{date}</span> */}
+                {/* <span className={styles.date}>{date}</span> */}
+                <span className={styles.date}>{monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</span>
+                {/* <span className={styles.date}>{log.date}</span> */}
+                {/* <span className={styles.monthYear}>{log.monthYear}</span> */}
             </div>
             <div className={styles.content}>
                 <h2 className={styles.title}>{log.title}</h2>
@@ -39,7 +47,10 @@ export default function TrainingCard({ log }) {
             </div>
             <div className={styles.editButton}>
                 {/* Assuming you have an edit action or icon */}
-                <button>Edit</button> 
+                <button onClick = {() => {
+                    setEditLog(log);
+                    setDisplay(7);
+                }}>Edit</button> 
             </div>
         </div>
     );

@@ -5,25 +5,37 @@ function isDateValid(dateStr) {
     return !isNaN(new Date(dateStr));
 }
 
-export default function CreateTrainingLog({ setDisplay, userID, animals}) {
-    const [title, setTitle] = useState('');
-    const [animal, setAnimal] = useState('');
-    const [hours, setHours] = useState('');
-    const [month, setMonth] = useState('January');
-    const [day, setDay] = useState('');
-    const [year, setYear] = useState('');
-    const [notes, setNotes] = useState('');
+export default function EditTrainingLog({ setDisplay, userID, animals, editLog, setEditLog}) {
+    const [title, setTitle] = useState(editLog.title);    
+    
+    const filteredAnimals = animals.filter((animal) => {
+        return animal._id === editLog.animal;
+    });
+    const [animal, setAnimal] = useState(filteredAnimals[0]);
+
+    const [hours, setHours] = useState(editLog.hours);
+
+    const old_date = new Date(editLog.date);
+    console.log("right here");
+    console.log(old_date);
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const [month, setMonth] = useState(monthNames[old_date.getMonth()]);
+    const [day, setDay] = useState(old_date.getDate());
+    const [year, setYear] = useState(old_date.getFullYear());
+
+    const [notes, setNotes] = useState(editLog.description);
 
     async function handleSubmit() {
         const param = {
-            user: userID,
-            animal,
+            trainingLogID: editLog._id,
+            user: editLog.user,
+            animal: editLog.animal,
             title,
             date: `${month} ${day}, ${year}`,
             description: notes,
             hours,
         };
-        const response = await createlog(param);
+        const response = await editlog(param);
         console.log(response);
         if (response.status === "success") {
             setDisplay(0);
@@ -31,11 +43,24 @@ export default function CreateTrainingLog({ setDisplay, userID, animals}) {
             //error handling
         }
     };
+
+    async function handleDelete() {
+        const param = {
+            trainingLogID: editLog._id,
+        };
+        const response = await deletelog(param);
+        console.log(response);
+        if (response.status === "success") {
+            setDisplay(0);
+        } else {
+            //error handling
+        }
+    }
     
-    async function createlog(param) {
+    async function editlog(param) {
         console.log(param.user);
         const result = await fetch('/api/training', {
-            method: 'POST',
+            method: 'PATCH',
             body: JSON.stringify(param)
         })
         // throw new Error("here");
@@ -44,9 +69,17 @@ export default function CreateTrainingLog({ setDisplay, userID, animals}) {
         return data;
     }
 
-    const filteredAnimals = animals.filter((animal) => {
-        return animal.owner === userID;
-    });
+    async function deletelog(param) {
+        // console.log(param.user);
+        const result = await fetch('/api/training', {
+            method: 'DELETE',
+            body: JSON.stringify(param)
+        })
+        // throw new Error("here");
+        const data = await result.json();
+        console.log(data);
+        return data;
+    }
 
     return (
         <div className={styles.trainingLogContainer}>
@@ -101,6 +134,11 @@ export default function CreateTrainingLog({ setDisplay, userID, animals}) {
                 <button onClick = {() => {
                     setDisplay(0);
                 }}>Cancel</button>
+
+                <button onClick = {(e) => {
+                    e.preventDefault();
+                    handleDelete();
+                }}> Delete </button>
 
                 <button type="submit" onClick = {(e) => {
                     e.preventDefault();

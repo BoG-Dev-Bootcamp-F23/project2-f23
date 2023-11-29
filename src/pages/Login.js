@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import TitleBar from '../components/TitleBar';
+import {useAuth} from "../contexts/useAuth"
 
 export default function Login() {
+    const {loginUser, setLoginUser} = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -19,12 +21,9 @@ export default function Login() {
             setMessage('Invalid password')
         } else {
             setMessage('')
+            setLoginUser(response.userID);
             router.push({
-                pathname: '/MainPage',
-                query: {
-                    userID: response.userID,
-                    admin: response.admin
-                }
+                pathname: '/MainPage'
             })
         }
     }

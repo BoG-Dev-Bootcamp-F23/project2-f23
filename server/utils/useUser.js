@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import verifyUser from '../mongodb/actions/verifyUser';
 
 export function useUser(input) {
@@ -25,3 +25,44 @@ export function useUser(input) {
 }
 
 export default useUser;
+
+/*
+    useContext() demo:
+
+    Create contexts folder and put useAuth.js in it
+
+
+    useAuth.js:
+
+
+    import { useContext, createContext } from 'react';
+
+    export const AuthContext = createContext(null);
+
+    export function useAuth() {
+        return useContext(AuthContext);
+    }
+
+
+    Inside component:
+
+
+    const [userID, setUserID] = useState();
+
+    return (
+        <AuthContext.Provider value={{userID, setUserID}}>
+            // all components in here have access to userID and setUserID
+        </AuthContext.Provider>
+    );
+
+    Create InputComponent which is in AuthContext
+
+    export default function InputComponent() {
+        const { userID, setUserID } = useAuth();
+
+        return (
+            <input onChange{(e) => {setUserID(e.target.value)}} value={userID}></input>
+        )
+    }
+
+*/

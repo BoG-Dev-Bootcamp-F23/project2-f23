@@ -19,9 +19,17 @@
     color: black;
     font-family: 'Heebo', sans-serif;
     font-weight: 300;
-    top: -1px;
-    margin: 0px;
-    padding: 0px;
+    font-size: 18px;
+    margin-left: 8px;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .form {
@@ -39,6 +47,7 @@
     font-size: 18px;
     height: 40px;
     margin-top: 15px;
+    background-color: white;
 }
 
 .input::placeholder {
@@ -62,6 +71,11 @@
     font-family: 'Heebo', sans-serif;
     font-weight: 500;
     font-size: 30px;
+}
+
+.button:hover {
+    background-color: #c41312;
+    cursor: pointer;
 }
 
 .bottomNote {

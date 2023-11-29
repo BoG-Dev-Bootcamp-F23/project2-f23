@@ -30,6 +30,7 @@
     font-size: 18px;
     height: 40px;
     margin-top: 15px;
+    background-color: white;
 }
 
 .input::placeholder {
@@ -52,6 +53,11 @@
     font-size: 30px;
 }
 
+.button:hover {
+    background-color: #c41312;
+    cursor: pointer;
+}
+
 .bottomNote {
     color: black;
     font-family: 'Heebo', sans-serif;
@@ -66,4 +72,13 @@
 .click {
     cursor: pointer;
     font-weight: 500;
+}
+
+.errorMessage {
+    position: absolute;
+    color: #c41312;
+    margin-top: 116px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
 }

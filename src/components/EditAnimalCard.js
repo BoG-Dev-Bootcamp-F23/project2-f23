@@ -1,28 +1,22 @@
 import React from "react";
-import styles from '..//styles/EditTrainingLog.module.css';
+import styles from '..//styles/EditAnimalCard.module.css';
 
 
 
-export default function EditTrainingLog() {
+export default function EditAnimalCard() {
 
 
-
-    
     return (
         <div className={styles.container}>
-            <h3 className={styles.title}>Training Logs</h3>
+            <h3 className={styles.title}>Animals</h3>
             <div className={styles.mainBody}>
-                <div className={styles.titleInput}>
-                    <h4>Title</h4>
-                    <input className={styles.titleInputBox} type="text" placeholder="Title" />
+                <div className={styles.animalNameInput}>
+                    <h4>Animal Name</h4>
+                    <input className={styles.animalNameInputBox} type="text" placeholder="Name" />
                 </div>
-                <div className={styles.animalSelect}>
-                    <h4>Select Animal</h4>
-                    <select placeholder = "Select Animal" className={styles.animalInputBox}>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                        <option value="bird">Bird</option>
-                    </select>
+                <div className={styles.breedSelect}>
+                <h4> Breed </h4>
+                    <input className={styles.breedSelectBox} type="text" placeholder="Breed" />
                 </div>
                 <div className={styles.hoursTrainedInput}>
                     <h4>Total Hours Trained</h4>

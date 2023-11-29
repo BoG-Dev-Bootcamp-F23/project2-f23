@@ -6,9 +6,10 @@ import TrainingLogCard from '@/components/TrainingLogCard';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import EditTrainingLog from '@/components/EditTrainingLog';
+import EditAnimalCard from '@/components/EditAnimalCard';
 
 export default function Home() {
-  const [training, setTraining] = useState(false);
+  const [training, setTraining] = useState(true);
   const [animalCards, setAnimalCards] = useState([]);
   const [trainingCard, setTrainingCard] = useState([]);
 
@@ -51,10 +52,21 @@ export default function Home() {
       <Header />
       <div className={styles.mainContent}>
         <Sidebar />
-        <EditTrainingLog className = {styles.editTrainingContainer}/>
-        {/* <div className={styles.contentContainer}>
-          <EditTrainingLog className = {styles.editTrainingContainer}/>
-        </div> */}
+        <div className={styles.contentContainer}>
+          {training ? (
+            <div className={styles.trainingCardsContainer}>
+              {trainingCard?.map((card) => (
+                <TrainingLogCard {...card} key={card._id} />
+              ))}
+            </div>
+          ) : (
+            <div className={styles.animalCardsContainer}>
+              {animalCards?.map((card) => (
+                <AnimalCard {...card} key={card._id} />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

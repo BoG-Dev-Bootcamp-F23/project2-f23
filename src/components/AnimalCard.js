@@ -13,8 +13,6 @@ export default function AnimalCard(props) {
 
     const [realUser, setUser] = useState("");
 
-    const person = getOneUser(owner);
-
 
     return (
         <div className= {styles.animalCard}>
@@ -28,7 +26,7 @@ export default function AnimalCard(props) {
                         <p> {name} - {breed} </p>
                     </div>
                     <div className = {styles.trainerHours}>
-                        <p> {person ? `${person} • Trained ${hoursTrained} hours` : 'Loading...'}</p>
+                        <p> {realUser ? `${realUser} • Trained ${hoursTrained} hours` : 'Loading...'}</p>
                     </div>
                 </div>
             </div>

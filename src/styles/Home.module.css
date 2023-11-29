@@ -11,6 +11,10 @@
   padding-left: 10px;
 }
 
+.editAnimalContainer {
+  padding-left: 10px;
+}
+
 .trainingCardsContainer {
   display: flex;
   flex-direction: column;

@@ -1,28 +1,31 @@
 import Image from "next/image"
 import style from "../styles/SideBar.module.css";
-import Account from "./Account"
 import AllAnimals from "../images/AllAnimals.png"
 import AllTraining from "../images/AllTraining.png"
 import AllUsers from "../images/AllUsers.png"
 import Animals from "../images/Animals.png"
 import TrainingLogs from "../images/TrainingLogs.png"
+import logoutIcon from '../images/logout.png';
 
 export default function SideBar(props) {
-    const { display, setDisplay, user, login, setLogin } = props;
+    const { display, setDisplay, user } = props;
+    const admin = user.admin ? "Admin" : "User";
     return (
         <div className={style.sidebarContainer}>
-            <div className={display === 0? style.activateSidebarButton : style.sidebarButton} onClick = {() => {
-                setDisplay(0);
-            }}>
-                <Image src = {TrainingLogs} alt="Training Logs"/>
-                <p> Training logs</p>
+            <div className={style.noAdmin}>
+                <div className={display === 0? style.activateSidebarButton : style.sidebarButton} onClick = {() => {
+                    setDisplay(0);
+                }}>
+                    <Image src = {TrainingLogs} alt="Training Logs"/>
+                    <p> Training logs</p>
+                </div>
+                <div className={display === 1? style.activateSidebarButton : style.sidebarButton} onClick = {() => {
+                    setDisplay(1);
+                }}>
+                    <Image src = {Animals} alt="Animals"/>
+                    <p> Animals</p>
             </div>
-            <div className={display === 1? style.activateSidebarButton : style.sidebarButton} onClick = {() => {
-                setDisplay(1);
-            }}>
-                <Image src = {Animals} alt="Animals"/>
-                <p> Animals</p>
-            </div>
+            </div>    
             {user.admin? (
                 <div className={style.adminOnly}>
                     <p> Admin access</p>
@@ -46,8 +49,22 @@ export default function SideBar(props) {
                     </div>
                 </div>
             ): null}
-            
-            <Account user={user} login={login} setLogin={setLogin}/>
+            <div className={style.userFooter}>
+                <div className={style.nameFooter}>
+                    <div className ={style.icon}>
+                        <p className={style.initial}> {user.fullName.toUpperCase()[0]} </p>
+                    </div>
+                    <div className={style.content}>
+                        <p className={style.name}> {user.fullName} </p>
+                        <p className={style.footer}> {admin}</p>
+                    </div>
+                </div>
+                <div className = {style.logout}>
+                <Image src={logoutIcon} alt="Log Out" onClick = {() => {
+                    router.push('/Login');
+                }}/>
+            </div>
+            </div>
         </div>
     );
 }

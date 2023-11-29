@@ -10,9 +10,23 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 100px;
-    padding-left: 100px;
-    padding-right: 50px;
+    padding-top: 100px;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-bottom: 5px;
+    color: #666;
+    font-size: larger;
+    box-shadow: 0 0 0 2px rgba(0,0,0,.2);
+}
+
+.createButton {
+    display: flex;
+    flex: row;
+    gap: 10px;
+}
+
+.createButton img {
+    cursor: pointer;
 }
 
 .right_header_nocreate {
@@ -20,6 +34,8 @@
     flex-direction: row;
     justify-content: space-around;
     margin-top: 100px;
+    color: #666;
+    font-size: larger;
 }
 
 .dashboard {

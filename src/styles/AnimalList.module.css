@@ -1,14 +1,8 @@
 .animalListContainer {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    margin: 10px;
     gap: 40px;
-    padding: 1rem;
+    justify-content: center;
 }
-  
-.animalCard {
-    flex: 1;
-    max-width: calc(33.333% - 2rem); 
-    min-width: 300px;
-}
-

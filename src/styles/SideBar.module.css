@@ -36,9 +36,10 @@
     cursor: pointer;
     border-radius: 15px;
     transition: background-color 0.3s ease;
-    color: #333;
+    color: #565252;
     font-family: 'Heebo', sans-serif;
     font-weight: 400;
+    font-size: 16px;
 }
 
 .sidebarButton:hover {
@@ -62,6 +63,7 @@
     color: white;
     font-family: 'Heebo', sans-serif;
     font-weight: 400;
+    font-size: 16px;
 }
 
 .activateSidebarButton p {
@@ -82,13 +84,12 @@
 }
 
 .userFooter {
+    position: fixed;
+    bottom: 14px;
+    width: 222px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: auto;
-    width: 100%;
-    padding-bottom: 50px;
-    box-sizing: border-box;
     border-top: 2px solid rgba(0,0,0,.2);
 }
 
@@ -96,6 +97,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    margin-top: 10px;
 }
 
 .icon {
@@ -106,8 +108,8 @@
     font-size: 26px;
     background-color: #D21312;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,10 +119,20 @@
     padding: 0px;
     margin: 0px;
 }
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .name {
-    font-size: 26px;
-    color: #260101;
+    font-size: 22px;
+    color: #565252;
     font-weight: 700;
+    line-height: 26px;
+    font-family: 'Heebo', sans-serif;
+    margin-bottom: 3px;
 }
 
 .logout {
@@ -131,6 +143,25 @@
 }
 
 .footer {
-    font-size: 20px;
-    color: #999999;
+    font-size: 16px;
+    color: #565252;
+    font-weight: 400;
+    font-family: 'Heebo', sans-serif;
+}
+
+.adminHeader {
+    color: #565252;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.allContent {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.logoutbutton {
+    width: 24px;
+    height: 24px;
 }

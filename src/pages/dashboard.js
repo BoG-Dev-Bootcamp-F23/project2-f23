@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from "../contexts/useAuth"
 
+import { parseCookies } from 'nookies';
+import jwt from 'jsonwebtoken';
+
 import Image from "next/image.js"
 import style from "../styles/MainPage.module.css"
 import Head from 'next/head';
@@ -93,7 +96,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
     }
 } 
 
-export default function DashboardPage() {
+export default function DashboardPage( {userID}) {
     // State for storing animals and training logs
     // const user = props.user;
     // const user = null;
@@ -103,6 +106,8 @@ export default function DashboardPage() {
     
     const router = useRouter();
     const {loginUser, setLoginUser, users, setUsers, animals, setAnimals, trainingLogs, setTrainingLogs, display, setDisplay, editLog, setEditLog, searchTerm, setSearchTerm} = useAuth();
+
+    setLoginUser(userID);
     const [loading, setLoading] = useState(true);
     const [login, setLogin] = useState(1);
 
@@ -138,6 +143,15 @@ export default function DashboardPage() {
         // user = users.filter(user => user._id === userID);
     }, []);
 
+    /* Use cookies
+    useEffect(() => {
+        console.log(useruserID);
+        setUser(users.filter(user => user._id === useruserID)[0]);
+        console.log(users.filter(user => user._id === useruserID));
+    }, [users]);
+    */
+
+    /*Use context hook */
     useEffect(() => {
         console.log(loginUser);
         setUser(users.filter(user => user._id === loginUser)[0]);
@@ -181,6 +195,7 @@ export default function DashboardPage() {
         <div className={style.dashboard}>
             <SearchBar />
             {
+                // useruserID? ( 
                 loginUser? (
                     loading?(
                         <div className = {style.loading}>
@@ -193,6 +208,7 @@ export default function DashboardPage() {
                                 {/* { login? router.push('/login') : null} */}
                             </div>
                             <div className={style.right}>
+                                {/* {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, useruserID, editLog, setEditLog)} */}
                                 {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, loginUser, editLog, setEditLog)}
                             </div>
                         </div>
@@ -212,4 +228,36 @@ export default function DashboardPage() {
         </div>
         </>
     );
+}
+
+
+export async function getServerSideProps(context) {
+    const cookies = parseCookies(context);
+    const token = cookies.token;
+
+
+    try {
+        if (token) {
+            // console.log()
+            const decoded = jwt.verify(token, 'q40paegianopgw4pn4gnagrhp38pn'); // Replace with your JWT secret key
+
+            // const {loginUser, setLoginUser} = useAuth();
+            console.log(decoded.userID);
+            // setLoginUser(decoded.userID);
+            // Token is valid, render the page
+            return { props: { userID: decoded.userID } };
+        }
+    } catch (error) {
+        return { props: {userID: null}};
+        // Token validation failed
+    }
+
+    // return { props: {userID: null}};
+    // Redirect to login if not authenticated
+    return {
+        redirect: {
+            destination: '/login',
+            permanent: false,
+        },
+    };
 }

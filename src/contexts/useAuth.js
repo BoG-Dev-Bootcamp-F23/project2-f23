@@ -43,3 +43,38 @@ export function useAuth() {
 // Cookies.set("accessToken", accessToken, cookieOptions);
 
 // const tokenCookie = Cookies.get("accessToken");
+
+
+/*
+
+import { parseCookies } from 'nookies';
+import jwt from 'jsonwebtoken';
+
+export default function MainPage() {
+    return <div>Welcome to the Main Page!</div>;
+}
+
+export async function getServerSideProps(context) {
+    try {
+        const cookies = parseCookies(context);
+        const token = cookies.token;
+
+        // Verify the JWT token
+        jwt.verify(token, 'your_jwt_secret_key');
+
+        // If verification is successful, return the usual props
+        return { props: {} };
+    } catch (err) {
+        // If verification fails, redirect to the login page
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            },
+        };
+    }
+}
+
+
+
+*/

@@ -20,12 +20,26 @@ import {useAuth} from "../contexts/useAuth";
 
 export default function SideBar() {
     // display={display} setDisplay={setDisplay} user = {user}
-    const { display, setDisplay, users, loginUser, setLoginUser} = useAuth();
+    const { display, setDisplay, users, loginUser, setLoginUser, setEditLog, setSearchTerm} = useAuth();
     const user = users.filter(user => user._id === loginUser)[0];
 
     const [hovered, setHovered] = useState(-1);
     const admin = user?.admin ? "Admin" : "User";
     const router = useRouter();
+
+    async function handleLogout() {
+        const response = await fetch('/api/user/logout', {method: 'POST'});
+        const data = await response.json();
+        console.log(data);
+        if (response.ok) {
+            // const {setDisplay, setLoginUser, setEditLog, setSearchTerm} = useAuth();
+            setDisplay(0);
+            setLoginUser();
+            setEditLog(null);
+            setSearchTerm('');
+            router.push('/login');
+        }
+    }
 
     return (
         <div className={style.sidebarContainer}>
@@ -119,8 +133,7 @@ export default function SideBar() {
                     </div>
                     <div className = {style.logout}>
                     <Image className={style.logoutbutton} src={logoutIcon} alt="Log Out" onClick = {() => {
-                        setLoginUser();
-                        router.push('/login');
+                        handleLogout();
                     }}/>
                 </div>
             </div>

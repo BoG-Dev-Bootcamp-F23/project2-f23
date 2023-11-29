@@ -21,7 +21,7 @@ export default function LoginPage() {
             setMessage('Invalid password')
         } else {
             setMessage('')
-            setLoginUser(response.userID);
+            // setLoginUser(response.userID);
             router.push({
                 pathname: '/dashboard'
             })

@@ -93,7 +93,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
     }
 } 
 
-export default function dashboard() {
+export default function DashboardPage() {
     // State for storing animals and training logs
     // const user = props.user;
     // const user = null;

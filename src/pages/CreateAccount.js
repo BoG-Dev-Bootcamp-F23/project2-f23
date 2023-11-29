@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import TitleBar from '../components/TitleBar';
 
-export default function createaccount() {
+export default function CreateAccountPage() {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

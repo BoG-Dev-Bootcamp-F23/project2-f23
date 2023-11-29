@@ -5,7 +5,7 @@ import Head from 'next/head';
 import TitleBar from '../components/TitleBar';
 import {useAuth} from "../contexts/useAuth"
 
-export default function login() {
+export default function LoginPage() {
     const {loginUser, setLoginUser} = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

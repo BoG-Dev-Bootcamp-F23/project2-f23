@@ -1,29 +1,9 @@
-// import React, { useState, useEffect } from 'react';
-
-// export default function TrainingCard({ log }) {
-
-//     return (
-//         <div>
-//             <div className = "date">
-//                 <p> {log.date} </p>
-//             </div>
-//             <div className = "information">
-//                 <p> {log.title} </p>
-//                 <p> {log.hours}</p>
-//                 <p> {log.user}</p>
-//                 <p> {log.animal}</p>
-//                 <p> {log.description}</p>
-//             </div>
-//         </div>
-//     );
-// }
-
-
 import React from 'react';
 import styles from '../styles/TrainingCard.module.css'; // assuming CSS module
 import { useAuth } from "../contexts/useAuth";
 import Image from "next/image";
 import PencilSolid from "../images/pencil-solid.png"
+import Head from 'next/head';
 
 export default function TrainingCard({ log }) {
 
@@ -39,13 +19,14 @@ export default function TrainingCard({ log }) {
     ];
     return (
         <div className={styles.card}>
+            <Head>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500&family=Oswald:wght@500&display=swap" rel="stylesheet" />            
+            </Head>
             <div className={styles.dateBadge}>
-                {/* <span className={styles.date}>{date}</span> */}
-                {/* <span className={styles.date}>{date}</span> */}
                 <span className={styles.date}>{date.getDate()}</span>
                 <span className={styles.monthYear}>{monthNames[date.getMonth()]} - {date.getFullYear()}</span>
-                {/* <span className={styles.date}>{log.date}</span> */}
-                {/* <span className={styles.monthYear}>{log.monthYear}</span> */}
             </div>
             <div className={styles.content}>
                 <h2 className={styles.title}>{log.title}                    
@@ -57,7 +38,6 @@ export default function TrainingCard({ log }) {
                 <p className={styles.description}>{log.description}</p>
             </div>
             <div className={styles.editButton}>
-                {/* Assuming you have an edit action or icon */}
                 <button onClick = {() => {
                     setEditLog(log);
                     setDisplay(7);

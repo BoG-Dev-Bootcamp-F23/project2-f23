@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import paw from "../images/paw.jpg";
+import search from "../images/search.png";
 import Head from 'next/head';
 import styles from '../styles/SearchBar.module.css';
 import { useAuth } from "../contexts/useAuth"
@@ -19,13 +20,16 @@ export default function SearchBar(props) {
                     <Image className={styles.image} src={paw} alt="paw-logo" />
                     <p className={styles.titletext}>Pawgress</p>
                 </div>
-                <input
-                    className={styles.searchBar}
-                    type="text"
-                    placeholder="Search"
-                    value={searchTerm}
-                    onChange={e => setSearchTerm(e.target.value)}
-                />
+                <div className={styles.searchBar}>
+                    <Image className={styles.search} src={search} alt="search-icon" />
+                    <input
+                        className={styles.input}
+                        type="text"
+                        placeholder="Search"
+                        value={searchTerm}
+                        onChange={e => setSearchTerm(e.target.value)}
+                    />
+                </div>
             </div>
         </div>
     );

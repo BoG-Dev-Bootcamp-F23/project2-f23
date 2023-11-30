@@ -21,7 +21,6 @@ import TrainingLogList from '../components/TrainingLogList.js';
 import CreateAnimal from "../components/CreateAnimal"
 import CreateTrainingLog from "../components/CreateTrainingLog"
 import EditTrainingLog from "../components/EditTrainingLog"
-// import api from '../services/api'; // Your API service file
 
 const adminAPI = '/api/admin/'
 const userAPI = '/api/user/'
@@ -36,7 +35,14 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_yescreate}>
                         <p> Training logs</p>
                         <div className={style.createButton} onClick = {() => {
-                            setDisplay(5);
+                            const filteredAnimals = animals?.filter((animal) => {
+                                return animal.owner === userID;
+                            });
+                            if (filteredAnimals.length === 0) {
+                                setDisplay(8);
+                            } else {
+                                setDisplay(5);
+                            }
                         }}>
                             <Image src={create} alt="training log"/>
                             <p className={style.createText}>Create new</p>
@@ -107,16 +113,23 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
             );
         case 7:
             return <EditTrainingLog />
+        case 8:
+            return (
+                <div>
+                    <div className={style.right_header_yescreate}>
+                        <p>Training logs</p>
+                        <div className={style.createButton}>
+                            <Image src={create} alt="animal picture"/>
+                            <p className={style.createText}>Create new</p>
+                        </div>
+                    </div>
+                    <p className={style.error}>Please create an animal profile before creating a training log!</p>
+                </div>
+            )
     }
 } 
 
 export default function DashboardPage( {userID}) {
-    // State for storing animals and training logs
-    // const user = props.user;
-    // const user = null;
-    // let user;
-    // const admin = props.admin;
-    // const userID = props.userID;
     
     const router = useRouter();
     const {loginUser, setLoginUser, users, setUsers, animals, setAnimals, trainingLogs, setTrainingLogs, display, setDisplay, editLog, setEditLog, searchTerm, setSearchTerm} = useAuth();

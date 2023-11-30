@@ -38,7 +38,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                         <div className={style.createButton} onClick = {() => {
                             setDisplay(5);
                         }}>
-                            <Image src={create} />
+                            <Image src={create} alt="training log"/>
                             <p>Create New</p>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                         <div className={style.createButton} onClick = {() => {
                             setDisplay(6);
                         }} >
-                            <Image src={create} />
+                            <Image src={create} alt="animal picture"/>
                             <p>Create New</p>
                         </div>
                     </div>            

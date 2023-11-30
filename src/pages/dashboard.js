@@ -21,12 +21,11 @@ import TrainingLogList from '../components/TrainingLogList.js';
 import CreateAnimal from "../components/CreateAnimal"
 import CreateTrainingLog from "../components/CreateTrainingLog"
 import EditTrainingLog from "../components/EditTrainingLog"
-// import api from '../services/api'; // Your API service file
 
-const adminAPI = 'http://localhost:3000/api/admin/'
-const userAPI = 'http://localhost:3000/api/user/'
-const animalAPI = 'http://localhost:3000/api/animal/'
-const trainingAPI = 'http://localhost:3000/api/training/'
+const adminAPI = '/api/admin/'
+const userAPI = '/api/user/'
+const animalAPI = '/api/animal/'
+const trainingAPI = '/api/training/'
 
 function renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID) {
     switch (display) {
@@ -36,13 +35,20 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_yescreate}>
                         <p> Training logs</p>
                         <div className={style.createButton} onClick = {() => {
-                            setDisplay(5);
+                            const filteredAnimals = animals?.filter((animal) => {
+                                return animal.owner === userID;
+                            });
+                            if (filteredAnimals.length === 0) {
+                                setDisplay(8);
+                            } else {
+                                setDisplay(5);
+                            }
                         }}>
-                            <Image src={create} />
-                            <p>Create New</p>
+                            <Image src={create} alt="training log"/>
+                            <p className={style.createText}>Create new</p>
                         </div>
                     </div>
-                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm) && log.user === userID)} />
+                    <TrainingLogList logs={trainingLogs.filter(log => log.title.toLowerCase().includes(searchTerm.toLowerCase()) && log.user === userID)} pagination={false}/>
                 </div>
             );
         case 1:
@@ -53,11 +59,11 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                         <div className={style.createButton} onClick = {() => {
                             setDisplay(6);
                         }} >
-                            <Image src={create} />
-                            <p>Create New</p>
+                            <Image src={create} alt="animal picture"/>
+                            <p className={style.createText}>Create new</p>
                         </div>
                     </div>            
-                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm) && animal.owner === userID)} />
+                    <AnimalList animals={animals.filter(animal => animal.name.toLowerCase().includes(searchTerm.toLowerCase()) && animal.owner === userID)} pagination={false}/>
                 </div>
             );
         case 2:
@@ -66,7 +72,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_nocreate}>
                         <p>All training logs</p>
                     </div>
-                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm))} />
+                    <TrainingLogList logs={trainingLogs.filter(log => log.title.toLowerCase().includes(searchTerm.toLowerCase()))} pagination={searchTerm === ''}/>
                 </div>
             );
         case 3:
@@ -75,7 +81,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_nocreate}>
                         <p>All animals</p>
                     </div>
-                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm))} />
+                    <AnimalList animals={animals.filter(animal => animal.name.toLowerCase().includes(searchTerm.toLowerCase()))} pagination={searchTerm === ''}/>
                 </div>
             );
         case 4:
@@ -84,25 +90,46 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_nocreate}>
                         <p>All users</p>
                     </div>
-                    <UserList users={users.filter(user => user.fullName.includes(searchTerm))} />
+                    <UserList users={users.filter(user => user.fullName.toLowerCase().includes(searchTerm.toLowerCase()))} pagination={searchTerm === ''}/>
                 </div>
             );
         case 5:
-            return <CreateTrainingLog />
+            return (
+                <div>
+                    <div className={style.right_header_nocreate}>
+                        <p>Training logs</p>
+                    </div>
+                    <CreateTrainingLog />
+                </div>
+            );
         case 6:
-            return <CreateAnimal />
+            return (
+                <div>
+                    <div className={style.right_header_nocreate}>
+                        <p>Animals</p>
+                    </div>
+                    <CreateAnimal />                
+                </div>
+            );
         case 7:
             return <EditTrainingLog />
+        case 8:
+            return (
+                <div>
+                    <div className={style.right_header_yescreate}>
+                        <p>Training logs</p>
+                        <div className={style.createButton}>
+                            <Image src={create} alt="animal picture"/>
+                            <p className={style.createText}>Create new</p>
+                        </div>
+                    </div>
+                    <p className={style.error}>Please create an animal profile before creating a training log!</p>
+                </div>
+            )
     }
 } 
 
 export default function DashboardPage( {userID}) {
-    // State for storing animals and training logs
-    // const user = props.user;
-    // const user = null;
-    // let user;
-    // const admin = props.admin;
-    // const userID = props.userID;
     
     const router = useRouter();
     const {loginUser, setLoginUser, users, setUsers, animals, setAnimals, trainingLogs, setTrainingLogs, display, setDisplay, editLog, setEditLog, searchTerm, setSearchTerm} = useAuth();
@@ -205,22 +232,20 @@ export default function DashboardPage( {userID}) {
                         <div className={style.body}>
                             <div className={style.left}>
                                 {user?<Sidebar /> : null}
-                                {/* { login? router.push('/login') : null} */}
                             </div>
                             <div className={style.right}>
-                                {/* {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, useruserID, editLog, setEditLog)} */}
                                 {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, loginUser, editLog, setEditLog)}
                             </div>
                         </div>
                     )
                 ) : (
                     <div className={style.notLoggedIn}>
-                        <h1>You're not logged in!</h1>
-                        <h3 onClick={() => {
+                        <h1 className={style.title}>Not logged in!</h1>
+                        <h3 className={style.subtitle} onClick={() => {
                             router.push({
                                 pathname: '/login'
                             })
-                        }}>Click to go back to log in page</h3>
+                        }}>Click to return to log in page...</h3>
                     </div>
                 )
             }

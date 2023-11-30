@@ -87,7 +87,7 @@ export default function CreateTrainingLog() {
                     console.log(e.target.value)
                     }} required>
                     {filteredAnimals.map(animal => (
-                        <option value={animal._id}>{animal.name} - {animal.breed}</option>
+                        <option key={animal._id} value={animal._id}>{animal.name} - {animal.breed}</option>
                     ))}
                 </select>
 

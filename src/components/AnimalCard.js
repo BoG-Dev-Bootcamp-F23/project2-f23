@@ -21,9 +21,6 @@
 // }
 
 import React, { useState } from 'react';
-
-import Image from 'next/image';
-
 import styles from "../styles/AnimalCard.module.css";
 import {useAuth} from "../contexts/useAuth"
 import Head from 'next/head';

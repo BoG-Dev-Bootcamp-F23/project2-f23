@@ -48,7 +48,7 @@ export default function AnimalCard({ animal }) {
                     <b className={styles.firstLetter}>{animal.name.charAt(0).toUpperCase()}</b>
                 </div>
                 <div className={styles.infoRight}>
-                    <div className={styles.animalInfo}>{animal.name} - {animal.breed}</div>
+                    <div className={styles.animalInfo}>{animal.name}</div>
                     <div className={styles.breed}>{animal.breed}</div>
                     <div className={styles.trainingInfo}>{owner?.fullName} • Trained: {animal.hoursTrained} hours</div>
                 </div>

@@ -3,7 +3,7 @@
   border-radius: 16px;
   overflow: hidden;
   height: 300px;
-  width: 400px;
+  width: 300px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
 .picture {
   position: relative;
   width: 100%;
-  height: 75%;
+  height: 80%;
 }
 
 .info {
@@ -29,18 +29,31 @@
 }
 
 .userLogo {
-  background-color: #D21312;
+  /* background-color: #D21312;
   border-radius: 50%;
   width: 50px;
   height: 50px;
   display: flex;
   justify-content: center;
+  align-items: center; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #D21312;
+  color: white;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }
 
 .infoRight {
   flex-grow: 1;
-  padding-left: 16px;
+  margin-top: -10px;
+  padding-left: 2px;
+  padding-bottom: 2px;
 }
 
 .animalInfo {
@@ -48,12 +61,12 @@
   font-weight: bolder;
   color: #333;
   margin: 0;
+  margin-bottom: -8px;
 }
 
 .trainingInfo {
   font-size: 16px;
   color: #666;
-  margin-top: 4px;
 }
 
 .firstLetter {

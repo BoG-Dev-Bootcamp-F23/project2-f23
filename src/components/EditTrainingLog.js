@@ -102,7 +102,7 @@ export default function EditTrainingLog() {
                 */}
                 <select id="animal" value={animal} onChange={(e) => setAnimal(e.target.value)} required>
                     {filteredAnimals.map(animal => (
-                        <option value={animal._id}>{animal.name} - {animal.breed}</option>
+                        <option key={animal._id} value={animal._id}>{animal.name} - {animal.breed}</option>
                     ))}
                 </select>
 

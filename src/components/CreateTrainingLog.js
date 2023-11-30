@@ -12,10 +12,11 @@ export default function CreateTrainingLog() {
     });
 
     const [title, setTitle] = useState('');
-    const [animal, setAnimal] = useState('');
-    if (filteredAnimals.length > 0) {
-        setAnimal(filteredAnimals[0]._id);
-    }
+    const [animal, setAnimal] = useState(filteredAnimals[0]._id);
+    // const [animal, setAnimal] = useState('');
+    // if (filteredAnimals.length > 0) {
+    //     setAnimal(filteredAnimals[0]._id);
+    // }
 
     const [hours, setHours] = useState('');
     const [month, setMonth] = useState('January');

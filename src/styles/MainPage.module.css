@@ -17,6 +17,7 @@
     color: #666;
     font-size: 22px;
     border-bottom: 2px solid rgba(0,0,0,.2);
+    margin-bottom: 24px;
 }
 
 .createButton {
@@ -48,6 +49,7 @@
     color: #666;
     font-size: 22px;
     border-bottom: 2px solid rgba(0,0,0,.2);
+    margin-bottom: 24px;
 }
 
 .dashboard {
@@ -87,4 +89,13 @@
 .subtitle {
     font-family: 'Heebo', sans-serif;
     font-weight: 500;
+}
+
+.error {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 400;
+    color: #c41312;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

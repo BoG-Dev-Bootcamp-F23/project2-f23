@@ -50,7 +50,7 @@ export default function SideBar() {
             </Head>
             <div className={style.allContent}>
                 <div className={style.noAdmin}>
-                    <div className={display === 0 || display === 5 || display === 7? style.activateSidebarButton : style.sidebarButton} 
+                    <div className={display === 0 || display === 5 || display === 8 ? style.activateSidebarButton : style.sidebarButton} 
                         onClick = {() => {
                             setDisplay(0);
                         }}
@@ -60,7 +60,7 @@ export default function SideBar() {
                         onMouseLeave={() => {
                             setHovered(-1);
                         }}>
-                        <Image className={style.smallicon} src = {display === 0 || hovered === 0 || display === 5 || display === 7 ? PencilSolid : PencilStroke} alt="Training Logs"/>
+                        <Image className={style.smallicon} src = {display === 0 || hovered === 0 || display === 5 || display === 8 ? PencilSolid : PencilStroke} alt="Training Logs"/>
                         <p> Training logs</p>
                     </div>
                     <div className={display === 1 || display === 6? style.activateSidebarButton : style.sidebarButton} 

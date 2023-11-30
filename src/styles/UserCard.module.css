@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 100px;
+    height: 85px;
     width: 300px;
     border-radius: 20px;
     padding-left: 20px;
@@ -33,18 +33,21 @@
     width: 40px;
     height: 40px;
     margin-right: 10px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
 }
 
 .initial {
     padding: 0px;
     margin: 0px;
+    font-size: 25px;
 }
 .name {
-    font-size: 27px;
+    font-size: 21px;
     color: #260101;
     font-weight: 700;
 }
 .footer {
-    font-size: 20px;
+    font-size: 16px;
     color: #999999;
 }

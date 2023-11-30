@@ -5,8 +5,38 @@
     margin-left: 60px;
     margin-right: 30px;
     margin-bottom: 50px;
-    margin-top: 10px;
-    /* justify-content: space-evenly; */
-    gap: 40px;
+    justify-content: center;
+    gap: 30px;
     align-items: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    gap: 30px;
+}
+
+.button {
+    border-radius: 10px;
+    padding: 15px;
+    height: 20px;
+    width: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #D21312;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #c41312;
 }

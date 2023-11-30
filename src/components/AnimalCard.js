@@ -1,3 +1,4 @@
+
 // import React, { useState, useEffect } from 'react';
 
 // export default function AnimalCard({ animal }) {
@@ -20,6 +21,9 @@
 // }
 
 import React, { useState } from 'react';
+
+import Image from 'next/image';
+
 import styles from "../styles/AnimalCard.module.css";
 import {useAuth} from "../contexts/useAuth"
 import Head from 'next/head';
@@ -47,12 +51,14 @@ export default function AnimalCard({ animal }) {
                     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&display=swap" rel="stylesheet" />
             </Head>
             <div className={styles.picture}>
+
             <img
                 src={imageSrc}
                 alt={`Image of ${animal.name}`}
                 onError={handleImageError}
                 style={{ width: '300px', height: '200px', objectFit: 'cover' }}
             />
+
             </div>
             <div className={styles.info}>
                 <div className={styles.userLogo}>

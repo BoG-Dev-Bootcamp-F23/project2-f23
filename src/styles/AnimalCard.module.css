@@ -29,13 +29,6 @@
 }
 
 .userLogo {
-  /* background-color: #D21312;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -47,6 +40,8 @@
   width: 40px;
   height: 40px;
   margin-right: 10px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 700;
 }
 
 .infoRight {
@@ -57,16 +52,26 @@
 }
 
 .animalInfo {
+  font-family: 'Heebo', sans-serif;
   font-size: 20px;
-  font-weight: bolder;
+  font-weight: 700;
   color: #333;
   margin: 0;
   margin-bottom: -8px;
 }
 
+.breed {
+  color: #999999;
+  font-family: 'Heebo', sans-serif;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
 .trainingInfo {
-  font-size: 16px;
-  color: #666;
+  font-size: 15px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 500;
+  color: #999999;
 }
 
 .firstLetter {

@@ -24,6 +24,7 @@ import Image from 'next/image';
 import styles from "../styles/AnimalCard.module.css";
 import defaultImage from "../images/defaultImage.png";
 import {useAuth} from "../contexts/useAuth"
+import Head from 'next/head';
 
 export default function AnimalCard({ animal }) {
 
@@ -33,6 +34,11 @@ export default function AnimalCard({ animal }) {
 
     return (
         <div className={styles.animal}>
+            <Head>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&display=swap" rel="stylesheet" />
+            </Head>
             <div className={styles.picture}>
                 <Image
                     // src={animal.profilePicture}

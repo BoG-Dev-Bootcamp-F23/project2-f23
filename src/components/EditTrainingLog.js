@@ -32,9 +32,25 @@ export default function EditTrainingLog() {
             trainingLogID: editLog._id,
         };
         const response = await deletelog(param);
-        console.log(response);
         if (response.status === "success") {
             setEditLog(null);
+            setDisplay(0);
+        } else {
+            //error handling
+        }
+    }
+    async function handleSubmit() {
+        const param = {
+            trainingLogID: editLog._id,
+            user: editLog.user,
+            animal: editLog.animal,
+            title,
+            date: `${month} ${day}, ${year}`,
+            description: notes,
+            hours,
+        };
+        const response = await editlog(param);
+        if (response.status === "success") {
             setDisplay(0);
         } else {
             //error handling
@@ -49,7 +65,6 @@ export default function EditTrainingLog() {
         })
         // throw new Error("here");
         const data = await result.json();
-        console.log(data);
         return data;
     }
 
@@ -61,7 +76,6 @@ export default function EditTrainingLog() {
         })
         // throw new Error("here");
         const data = await result.json();
-        console.log(data);
         return data;
     }
 
@@ -82,7 +96,7 @@ export default function EditTrainingLog() {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&display=swap" rel="stylesheet" />
             </Head>
-            <form onSubmit={handleDelete} className={styles.formContainer}>
+            <form className={styles.formContainer}>
                 <label htmlFor="title" className={styles.titleText}>Title</label>
                 <input className={styles.input} type="text" id="title" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
 
@@ -94,7 +108,7 @@ export default function EditTrainingLog() {
                 </select>
 
                 <label htmlFor="hours" className={styles.titleText}>Total hours trained</label>
-                <input className={styles.input} type="number" id="hours" value={hours} onChange={(e) => {
+                <input className={styles.input} style={{backgroundColor: invalidHours ? '#f7bac6' : 'white'}} type="number" id="hours" value={hours} onChange={(e) => {
                     setHours(e.target.value)
                     if (e.target.value < 0) {
                         setInvalidHours(true);
@@ -123,11 +137,32 @@ export default function EditTrainingLog() {
                     </div>
                     <div className={styles.day}>
                         <label className={styles.titleText}>Date</label>
-                        <input className={styles.input} type="number" id="day" value={day} onChange={(e) => setDay(e.target.value)} min="1" max="31" required />
+                        <input className={styles.input} style={{backgroundColor: invalidDate ? '#f7bac6' : 'white'}} type="number" id="day" value={day} onChange={(e) => {
+                            setDay(e.target.value)
+                            if (e.target.value.length === 0) {
+                                setInvalidDate(false);
+                            } else {
+                                const isDateValid = checkDateValidity(e.target.value);
+                                if (isDateValid) {
+                                    setInvalidDate(false);
+                                } else {
+                                    setInvalidDate(true);
+                                }
+                            }
+                        }} min="1" max="31" required />
                     </div>
                     <div className={styles.year}>
                         <label className={styles.titleText}>Year</label>
-                        <input className={styles.input} type="number" id="year" value={year} onChange={(e) => setYear(e.target.value)} min="1900" max="2100" required />
+                        <input className={styles.input} style={{backgroundColor: invalidYear ? '#f7bac6' : 'white'}} type="number" id="year" value={year} onChange={(e) => {
+                            setYear(e.target.value)
+                            if (e.target.value.length === 0) {
+                                setInvalidYear(false);
+                            } else {
+                                if (e.target.value <= 0) {
+                                    setInvalidYear(true);
+                                } else setInvalidYear(false);
+                            }
+                        }} min="1900" max="2100" required />
                     </div>
                 </div>
 
@@ -139,7 +174,13 @@ export default function EditTrainingLog() {
                         setDisplay(0);
                     }}>Cancel</button>
 
-                    <button className={styles.submit} type="submit">Delete</button>
+                    <button className={styles.delete} type="submit" onClick={() => {
+                        handleDelete();
+                    }}>Delete</button>
+
+                    <button className={styles.submit} type="submit" onClick={() => {
+                        handleSubmit();
+                    }}>Save</button>
                 </div>
             </form>
         </div>

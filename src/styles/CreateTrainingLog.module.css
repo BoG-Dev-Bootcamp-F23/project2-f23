@@ -118,6 +118,12 @@
   color: white;
   margin-right: 30px;
 }
+.delete:hover {
+  cursor: pointer;
+  border: 1.5px solid #c41312;
+  transition: background-color 0.3s ease;
+  background-color: #c41312;
+}
 
 .textarea {
   resize: none;

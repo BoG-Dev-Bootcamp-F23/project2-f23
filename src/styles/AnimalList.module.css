@@ -10,3 +10,11 @@
     gap: 40px;
     align-items: center;
 }
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    padding-left: 30px;
+    margin: 10px;
+    gap: 30px;
+}

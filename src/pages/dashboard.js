@@ -118,9 +118,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                 <div>
                     <div className={style.right_header_yescreate}>
                         <p>Training logs</p>
-                        <div className={style.createButton} onClick = {() => {
-                            setDisplay(6);
-                        }} >
+                        <div className={style.createButton}>
                             <Image src={create} alt="animal picture"/>
                             <p className={style.createText}>Create new</p>
                         </div>

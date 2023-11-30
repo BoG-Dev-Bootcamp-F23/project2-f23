@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import TitleBar from '../components/TitleBar';
 
-export default function CreateAccount() {
+export default function CreateAccountPage() {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,6 +15,7 @@ export default function CreateAccount() {
     const [match, setMatch] = useState(true);
 
     const [admin, setAdmin] = useState(false);
+    const [accountExists, setExists] = useState(false);
     const router = useRouter();
 
     const handleBlur = (event) => {
@@ -35,6 +36,7 @@ export default function CreateAccount() {
     }
 
     const checkEmail = (event) => {
+        setExists(false);
         if (event.target.validity.patternMismatch) {
             event.preventDefault()
             setEmailValid(false)
@@ -49,12 +51,13 @@ export default function CreateAccount() {
             if (password === confirm) {
                 setMatch(true)
                 await createUser()
-                router.push('/Login')
-            } else {
                 setMatch(false)
+                router.push('/login')
+            } else {
+                
             }
-        } catch (e) {
-
+        } catch (error) {
+            setExists(true);
         }
     }
 
@@ -63,11 +66,14 @@ export default function CreateAccount() {
             method: 'POST',
             body: JSON.stringify({ fullName, email, password, admin })
         })
+        const data = await response.json();
 
-        if (response.status === 'Failed to create because user exists already') {
-            console.log("user exists already")
-        } else if (response.status === 'Failed to create because external issues') {
+        if (data.status === 'Failed to create because user exists already') {
+            throw new Error('user exists already');
+        } else if (data.status === 'Failed to create because external issues') {
             // what do I do here?
+        } else {
+            setExists(false);
         }
     }
 
@@ -82,24 +88,31 @@ export default function CreateAccount() {
                 </Head>
                 <h1 className={styles.title}>Create Account</h1>
                 <form className={styles.form} onSubmit={handleSubmit}>
-                    <input type="text" 
-                        className={styles.input}
-                        id="fullName" 
-                        placeholder="Full Name"
-                        pattern="^[a-zA-Z]+(\s[a-zA-Z]+)+"
-                        onChange={(e) => setFullName(e.target.value)}
-                        onBlur={checkName}
-                        style={{backgroundColor: nameValid ? 'white' : '#f7bac6'}}
-                        required></input>
-                    <input type="email" 
-                        className={styles.input}
-                        id="email" 
-                        placeholder="Email"
-                        pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+"
-                        onChange={(e) => setEmail(e.target.value)} 
-                        onBlur={checkEmail}
-                        style={{backgroundColor: emailValid ? 'white' : '#f7bac6'}}
-                        required></input>
+                    <div>
+                        <input type="text" 
+                            className={styles.input}
+                            id="fullName" 
+                            placeholder="Full Name"
+                            pattern="^[a-zA-Z]+(\s[a-zA-Z]+)+"
+                            onChange={(e) => setFullName(e.target.value)}
+                            onBlur={checkName}
+                            style={{backgroundColor: nameValid ? 'white' : '#f7bac6'}}
+                            required></input>
+                        <p className={styles.errorMessage} style={{display: !nameValid ? 'block' : 'none'}}>Please enter your full name</p>
+                    </div>
+                    <div>
+                        <input type="email" 
+                            className={styles.input}
+                            id="email" 
+                            placeholder="Email"
+                            pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+"
+                            onChange={(e) => setEmail(e.target.value)} 
+                            onBlur={checkEmail}
+                            style={{backgroundColor: emailValid&&!accountExists ? 'white' : '#f7bac6'}}
+                            required></input>
+                        <p className={styles.errorMessage} style={{display: !emailValid ? 'block' : 'none'}}>Please enter a valid email</p>
+                        <p className={styles.errorMessage} style={{display: accountExists ? 'block' : 'none'}}>Account with this email already exists</p>
+                    </div>
                     <input type="password" 
                         className={styles.input}
                         id="password" 
@@ -108,21 +121,24 @@ export default function CreateAccount() {
                         onChange={(e) => setPassword(e.target.value)} 
                         onBlur={handleBlur}
                         required></input>
-                    <input type="password" 
-                        className={styles.input}
-                        id="confirmPassword" 
-                        placeholder="Confirm Password"
-                        style={{backgroundColor: match ? 'white' : '#f7bac6'}}
-                        onChange={(e) => setConfirm(e.target.value)} 
-                        onBlur={handleBlur}
-                        required></input>
-                    <label className={styles.line}>
+                    <div>
+                        <input type="password" 
+                            className={styles.input}
+                            id="confirmPassword" 
+                            placeholder="Confirm Password"
+                            style={{backgroundColor: match ? 'white' : '#f7bac6'}}
+                            onChange={(e) => setConfirm(e.target.value)} 
+                            onBlur={handleBlur}
+                            required></input>
+                        <p className={styles.errorMessage} style={{display: !match ? 'block' : 'none'}}>Passwords do not match</p>
+                    </div>
+                    <label className={styles.adminLine}>
                         <input className={styles.checkbox} type="checkbox" onChange={(e) => setAdmin(!admin)} />
                         <div className={styles.adminText}>Admin access</div></label>
                     <button className={styles.button} type="submit">Sign up</button>
                 </form>
                 <p className={styles.bottomNote}>Already have an account? <a className={styles.click} onClick={() => {
-                    router.push('/Login')
+                    router.push('/login')
                 }}>Sign in</a></p>
             </div>
         </div>

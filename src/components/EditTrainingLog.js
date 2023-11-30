@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import styles from '../styles/CreateTrainingLog.module.css';
+import { useAuth } from "../contexts/useAuth"
 
 function isDateValid(dateStr) {
     return !isNaN(new Date(dateStr));
 }
 
-export default function EditTrainingLog({ setDisplay, userID, animals, editLog, setEditLog}) {
+export default function EditTrainingLog() {
+    const {setDisplay, animals, editLog, setEditLog} = useAuth();
+
     const [title, setTitle] = useState(editLog.title);    
     
     const filteredAnimals = animals.filter((animal) => {
@@ -16,8 +19,6 @@ export default function EditTrainingLog({ setDisplay, userID, animals, editLog, 
     const [hours, setHours] = useState(editLog.hours);
 
     const old_date = new Date(editLog.date);
-    console.log("right here");
-    console.log(old_date);
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const [month, setMonth] = useState(monthNames[old_date.getMonth()]);
     const [day, setDay] = useState(old_date.getDate());
@@ -38,6 +39,7 @@ export default function EditTrainingLog({ setDisplay, userID, animals, editLog, 
         const response = await editlog(param);
         console.log(response);
         if (response.status === "success") {
+            setEditLog(null);
             setDisplay(0);
         } else {
             //error handling
@@ -51,6 +53,7 @@ export default function EditTrainingLog({ setDisplay, userID, animals, editLog, 
         const response = await deletelog(param);
         console.log(response);
         if (response.status === "success") {
+            setEditLog(null);
             setDisplay(0);
         } else {
             //error handling

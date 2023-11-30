@@ -21,8 +21,15 @@
 
 import React from 'react';
 import styles from '../styles/TrainingCard.module.css'; // assuming CSS module
+import { useAuth } from "../contexts/useAuth"
 
-export default function TrainingCard({ log, setEditLog, setDisplay }) {
+export default function TrainingCard({ log }) {
+
+    const {users, animals, setEditLog, setDisplay} = useAuth();
+
+    const user = users?.filter(user => user._id === log.user)[0];
+    const animal = animals?.filter(animal => animal._id === log.animal)[0];
+
     const date = new Date(log.date);
     const monthNames = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -40,7 +47,7 @@ export default function TrainingCard({ log, setEditLog, setDisplay }) {
             <div className={styles.content}>
                 <h2 className={styles.title}>{log.title}</h2>
                 <div className={styles.details}>
-                    <span>{log.ownerName} - {log.animalBreed} - {log.animalName}</span>
+                    <span>{user?.fullName} - {animal?.breed} - {animal?.name}</span>
                     <span>{log.hours} hours</span>
                 </div>
                 <p className={styles.description}>{log.description}</p>

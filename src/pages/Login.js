@@ -4,8 +4,10 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import TitleBar from '../components/TitleBar';
 import {useAuth} from "../contexts/useAuth"
+import { parseCookies } from 'nookies';
+import jwt from 'jsonwebtoken';
 
-export default function Login() {
+export default function LoginPage() {
     const {loginUser, setLoginUser} = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,9 +23,9 @@ export default function Login() {
             setMessage('Invalid password')
         } else {
             setMessage('')
-            setLoginUser(response.userID);
+            // setLoginUser(response.userID);
             router.push({
-                pathname: '/MainPage'
+                pathname: '/dashboard'
             })
         }
     }
@@ -69,9 +71,49 @@ export default function Login() {
                     <button className={styles.button} type="submit">Log in</button>
                 </form>
                 <p className={styles.bottomNote}>Don't have an account? <a className={styles.click} onClick={() => {
-                    router.push('./CreateAccount');
+                    router.push('./createaccount');
                 }}>Sign up</a></p>
             </div>
         </div>
     );
+}
+
+
+
+export async function getServerSideProps(context) {
+    const cookies = parseCookies(context);
+    const token = cookies.token;
+
+
+    try {
+        if (token) {
+            // console.log()
+            const decoded = jwt.verify(token, 'q40paegianopgw4pn4gnagrhp38pn'); // Replace with your JWT secret key
+
+            // const {loginUser, setLoginUser} = useAuth();
+            console.log(decoded.userID);
+            return {
+                redirect: {
+                    destination: '/dashboard',
+                    permanent: false,
+                },
+            };
+            // setLoginUser(decoded.userID);
+            // Token is valid, render the page
+            return { props: { userID: decoded.userID } };
+        }
+    } catch (error) {
+        // return { props: {userID: null}};
+        return { props: {}};
+        // Token validation failed
+    }
+
+    return { props: {}};
+    // Redirect to login if not authenticated
+    // return {
+    //     redirect: {
+    //         destination: '/login',
+    //         permanent: false,
+    //     },
+    // };
 }

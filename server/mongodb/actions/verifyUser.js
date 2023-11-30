@@ -18,7 +18,7 @@ export default async function verifyUser(data) {
         if (result === false) {
             throw new Error('Incorrect password')
         }
-        
+
         return {'userID': user._id, 'admin': user.admin}
     } catch (e) {
         console.log(e)

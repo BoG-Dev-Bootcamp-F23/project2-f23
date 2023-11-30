@@ -19,6 +19,11 @@ export default function CreateAnimal() {
     const [year, setYear] = useState('');
     const [notes, setNotes] = useState('');
 
+    const [invalidHours, setInvalidHours] = useState(false);
+    const [invalidDate, setInvalidDate] = useState(false);
+    const [invalidYear, setInvalidYear] = useState(false);
+    const thirtyDays = ['April', 'June', 'September', 'November'];
+
     async function handleSubmit() {
     //   e.preventDefault();
         const param = {
@@ -43,10 +48,19 @@ export default function CreateAnimal() {
             method: 'POST',
             body: JSON.stringify(param)
         })
-        // throw new Error("here");
         const data = await result.json()
         console.log(data);
         return data;
+    }
+
+    function checkDateValidity(date) {
+        if (month === 'February') {
+            return date <= 29 && date >= 1
+        } else if (thirtyDays.includes(month)) {
+            return date <= 30 && date >= 1
+        } else {
+            return date <= 31 && date >= 1
+        }
     }
 
     return (
@@ -64,7 +78,14 @@ export default function CreateAnimal() {
                 <input type="text" id="breed" className={styles.input} placeholder="Breed" value={breed} onChange={(e) => setBreed(e.target.value)} required />
 
                 <label htmlFor="hours" className={styles.titleText}>Total hours trained</label>
-                <input type="number" id="hours" value={hours} className={styles.input} onChange={(e) => setHours(e.target.value)} min="0" step="0.5" required />
+                <input type="number" id="hours" value={hours} style={{backgroundColor: invalidHours ? '#f7bac6' : 'white'}} className={styles.input} onChange={(e) => {
+                    setHours(e.target.value)
+                    if (e.target.value < 0) {
+                        setInvalidHours(true);
+                    } else {
+                        setInvalidHours(false);
+                    }
+                }} min="0" step="0.5" required />
 
                 <div className={styles.mdy}>
                     <div className={styles.month}>
@@ -87,12 +108,33 @@ export default function CreateAnimal() {
 
                     <div className={styles.day}>
                         <label className={styles.titleText}>Date</label>
-                        <input className={styles.input} type="number" id="day" value={day} onChange={(e) => setDay(e.target.value)} min="1" max="31" required />
+                        <input className={styles.input} type="number" id="day" value={day} style={{backgroundColor: invalidDate ? '#f7bac6' : 'white'}} onChange={(e) => {
+                            setDay(e.target.value)
+                            if (e.target.value.length === 0) {
+                                setInvalidDate(false);
+                            } else {
+                                const isDateValid = checkDateValidity(e.target.value);
+                                if (isDateValid) {
+                                    setInvalidDate(false);
+                                } else {
+                                    setInvalidDate(true);
+                                }
+                            }
+                        }} min="1" max="31" required />
                     </div>
 
                     <div className={styles.year}>
                         <label className={styles.titleText}>Year</label>
-                        <input className={styles.input} type="number" id="year" value={year} onChange={(e) => setYear(e.target.value)} min="1900" max="2100" required />
+                        <input className={styles.input} type="number" id="year" style={{backgroundColor: invalidYear ? '#f7bac6' : 'white'}} value={year} onChange={(e) => {
+                            setYear(e.target.value)
+                            if (e.target.value.length === 0) {
+                                setInvalidYear(false);
+                            } else {
+                                if (e.target.value <= 0) {
+                                    setInvalidYear(true);
+                                } else setInvalidYear(false);
+                            }
+                        }} min="1900" max="2100" required />
                     </div>
                 </div>
 

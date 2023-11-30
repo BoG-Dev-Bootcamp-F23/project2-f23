@@ -11,19 +11,27 @@ export default function CreateTrainingLog() {
 
     const {setDisplay, loginUser, animals} = useAuth();
 
-    const filteredAnimals = animals.filter((animal) => {
+    const filteredAnimals = animals?.filter((animal) => {
         return animal.owner === loginUser;
     });
 
     const [title, setTitle] = useState('');
-    const [animal, setAnimal] = useState('');
+    const [animal, setAnimal] = useState(filteredAnimals[0]._id);
     const [hours, setHours] = useState('');
     const [month, setMonth] = useState('January');
     const [day, setDay] = useState('');
     const [year, setYear] = useState('');
     const [notes, setNotes] = useState('');
 
-    async function handleSubmit() {
+    const [invalidHours, setInvalidHours] = useState(false);
+    const [invalidDate, setInvalidDate] = useState(false);
+    const [invalidYear, setInvalidYear] = useState(false);
+    const thirtyDays = ['April', 'June', 'September', 'November'];
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        console.log("handlesubmit");
+        console.log(animal);
         const param = {
             user: loginUser,
             animal,
@@ -47,10 +55,19 @@ export default function CreateTrainingLog() {
             method: 'POST',
             body: JSON.stringify(param)
         })
-        // throw new Error("here");
         const data = await result.json();
         console.log(data);
         return data;
+    }
+
+    function checkDateValidity(date) {
+        if (month === 'February') {
+            return date <= 29 && date >= 1
+        } else if (thirtyDays.includes(month)) {
+            return date <= 30 && date >= 1
+        } else {
+            return date <= 31 && date >= 1
+        }
     }
 
     return (
@@ -65,26 +82,31 @@ export default function CreateTrainingLog() {
                 <input type="text" id="title" className={styles.input} placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
 
                 <label htmlFor="animal" className={styles.titleText}>Select Animal</label>
-                {/*
-                <select id="animal" value={animal} onChange={(e) => setAnimal(e.target.value)} required>
-                    {animals.map(animal => (
-                        <option value={animal._id}>{animal.name} - {animal.breed}</option>
-                    ))}
-                </select>
-                */}
-                <select id="animal" value={animal} className={styles.input} onChange={(e) => setAnimal(e.target.value)} required>
+                <select id="animal" value={animal} className={styles.input} onChange={(e) => {
+                    setAnimal(e.target.value)
+                    console.log(e.target.value)
+                    }} required>
                     {filteredAnimals.map(animal => (
                         <option value={animal._id}>{animal.name} - {animal.breed}</option>
                     ))}
                 </select>
 
                 <label htmlFor="hours" className={styles.titleText}>Total hours trained</label>
-                <input type="number" id="hours" value={hours} className={styles.input} onChange={(e) => setHours(e.target.value)} min="0" step="0.5" required />
+                <input type="number" id="hours" value={hours} style={{backgroundColor: invalidHours ? '#f7bac6' : 'white'}} className={styles.input} onChange={(e) => {
+                    setHours(e.target.value)
+                    if (e.target.value < 0) {
+                        setInvalidHours(true);
+                    } else {
+                        setInvalidHours(false);
+                    }
+                }} min="0" step="0.5" required />
                 
                 <div className={styles.mdy}>
                     <div className={styles.month}>
                         <label className={styles.titleText}>Month</label>
-                        <select id="month" value={month} className={styles.input} onChange={(e) => setMonth(e.target.value)} required>
+                        <select id="month" value={month} className={styles.input} onChange={(e) => {
+                            setMonth(e.target.value)
+                        }} required>
                             <option value="January">January</option>
                             <option value="February">February</option>
                             <option value="March">March</option>
@@ -102,12 +124,33 @@ export default function CreateTrainingLog() {
 
                     <div className={styles.day}>
                         <label className={styles.titleText}>Date</label>
-                        <input type="number" id="day" value={day} className={styles.input} onChange={(e) => setDay(e.target.value)} min="1" max="31" required />
+                        <input type="number" id="day" value={day} style={{backgroundColor: invalidDate ? '#f7bac6' : 'white'}} className={styles.input} onChange={(e) => {
+                            setDay(e.target.value);
+                            if (e.target.value.length === 0) {
+                                setInvalidDate(false);
+                            } else {
+                                const isDateValid = checkDateValidity(e.target.value);
+                                if (isDateValid) {
+                                    setInvalidDate(false);
+                                } else {
+                                    setInvalidDate(true);
+                                }
+                            }
+                        }} min="1" max="31" required />
                     </div>
 
                     <div className={styles.year}>
                         <label className={styles.titleText}>Year</label>
-                        <input type="number" id="year" value={year} className={styles.input} onChange={(e) => setYear(e.target.value)} min="1900" max="2100" required />
+                        <input type="number" id="year" value={year} style={{backgroundColor: invalidYear ? '#f7bac6' : 'white'}} className={styles.input} onChange={(e) => {
+                            setYear(e.target.value)
+                            if (e.target.value.length === 0) {
+                                setInvalidYear(false);
+                            } else {
+                                if (e.target.value <= 0) {
+                                    setInvalidYear(true);
+                                } else setInvalidYear(false);
+                            }
+                        }} min="1900" max="2100" required />
                     </div>
                 </div>
 

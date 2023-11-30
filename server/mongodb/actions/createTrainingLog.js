@@ -7,6 +7,9 @@ import updateAnimal from './updateAnimal.js'
 
 export default async function createTrainingLog(data) {
     try {
+
+        // console.log("createTrainingLog");
+        // console.log(data);
         await connectDB();
         let userExists = 0, animalExists = 0;
 

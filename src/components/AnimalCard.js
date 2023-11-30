@@ -19,10 +19,8 @@
 //     );
 // }
 
-
-import Image from 'next/image';
+import React, { useState } from 'react';
 import styles from "../styles/AnimalCard.module.css";
-import defaultImage from "../images/defaultImage.png";
 import {useAuth} from "../contexts/useAuth"
 import Head from 'next/head';
 
@@ -32,6 +30,15 @@ export default function AnimalCard({ animal }) {
     
     const owner = users?.filter(user => user._id === animal.owner)[0];
 
+    const defaultImage="../images/defaultImage.png";
+
+    const [imageSrc, setImageSrc] = useState(animal.profilePicture || defaultImage);
+
+    const handleImageError = () => {
+        if (imageSrc !== defaultImage) {
+            setImageSrc(defaultImage);
+        }
+    };
     return (
         <div className={styles.animal}>
             <Head>
@@ -40,14 +47,12 @@ export default function AnimalCard({ animal }) {
                     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&display=swap" rel="stylesheet" />
             </Head>
             <div className={styles.picture}>
-                <Image
-                    // src={animal.profilePicture}
-                    src={defaultImage}
-                    alt={`${animal.name}`}
-                    width={300}
-                    height={200}
-                    // layout="responsive"
-                />
+            <img
+                src={imageSrc}
+                alt={`Image of ${animal.name}`}
+                onError={handleImageError}
+                style={{ width: '300px', height: '200px', objectFit: 'cover' }}
+            />
             </div>
             <div className={styles.info}>
                 <div className={styles.userLogo}>

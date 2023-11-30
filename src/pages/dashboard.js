@@ -23,10 +23,10 @@ import CreateTrainingLog from "../components/CreateTrainingLog"
 import EditTrainingLog from "../components/EditTrainingLog"
 // import api from '../services/api'; // Your API service file
 
-const adminAPI = 'http://localhost:3000/api/admin/'
-const userAPI = 'http://localhost:3000/api/user/'
-const animalAPI = 'http://localhost:3000/api/animal/'
-const trainingAPI = 'http://localhost:3000/api/training/'
+const adminAPI = '/api/admin/'
+const userAPI = '/api/user/'
+const animalAPI = '/api/animal/'
+const trainingAPI = '/api/training/'
 
 function renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, userID) {
     switch (display) {

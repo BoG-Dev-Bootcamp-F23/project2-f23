@@ -2,7 +2,7 @@ import AnimalCard from "./AnimalCard"
 import style from "../styles/AnimalList.module.css"
 import React, { useState, useEffect } from 'react';
 
-const limitPerPage = 10;
+const limitPerPage = 9;
 
 export default function AnimalList({ animals, pagination }) {
     const [seg, setSeg] = useState(1);

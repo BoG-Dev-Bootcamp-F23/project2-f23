@@ -2,7 +2,7 @@ import UserCard from "./UserCard"
 import styles from '../styles/UserList.module.css';
 import React, { useState, useEffect } from 'react';
 
-const limitPerPage = 10;
+const limitPerPage = 12;
 
 const usersAPI = '/api/admin/users/'
 

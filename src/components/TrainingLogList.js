@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/useAuth.js"
 import style from "../styles/TrainingList.module.css"
 import React, { useState, useEffect } from 'react';
 
-const limitPerPage = 10;
+const limitPerPage = 8;
 
 export default function TrainingLogList({ logs, pagination }) {
     const [seg, setSeg] = useState(1);
@@ -15,7 +15,6 @@ export default function TrainingLogList({ logs, pagination }) {
         const fetch_pag = async () => {
             const response = await fetch(`/api/admin/training?page=${seg}&limit=${limitPerPage}`);
             const data = await response.json();
-            // console.log(data);
             setPagLogs(data);
             return data;
         }

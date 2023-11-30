@@ -5,7 +5,7 @@ export default function AnimalList({ animals }) {
     return (
         <div className={style.animalListContainer}>
             {animals.map(animal => (
-                <AnimalCard animal={animal} />
+                <AnimalCard key={animal._id} animal={animal} />
             ))}
         </div>
     );

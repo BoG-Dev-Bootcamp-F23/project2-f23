@@ -5,7 +5,7 @@ export default function UserList({ users }) {
     return (
         <div className={styles.listContainer}>
             {users.map(user => (
-                <UserCard user={user}/>
+                <UserCard key={user._id} user={user}/>
             ))}
         </div>
     );

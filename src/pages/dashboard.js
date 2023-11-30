@@ -219,22 +219,20 @@ export default function DashboardPage( {userID}) {
                         <div className={style.body}>
                             <div className={style.left}>
                                 {user?<Sidebar /> : null}
-                                {/* { login? router.push('/login') : null} */}
                             </div>
                             <div className={style.right}>
-                                {/* {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, useruserID, editLog, setEditLog)} */}
                                 {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, loginUser, editLog, setEditLog)}
                             </div>
                         </div>
                     )
                 ) : (
                     <div className={style.notLoggedIn}>
-                        <h1>You&apos;re not logged in!</h1>
-                        <h3 onClick={() => {
+                        <h1 className={style.title}>Not logged in!</h1>
+                        <h3 className={style.subtitle} onClick={() => {
                             router.push({
                                 pathname: '/login'
                             })
-                        }}>Click to go back to log in page</h3>
+                        }}>Click to return to log in page...</h3>
                     </div>
                 )
             }

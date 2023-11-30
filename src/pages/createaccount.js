@@ -53,9 +53,7 @@ export default function CreateAccountPage() {
                 await createUser()
                 setMatch(false)
                 router.push('/login')
-            } else {
-                
-            }
+            } 
         } catch (error) {
             setExists(true);
         }

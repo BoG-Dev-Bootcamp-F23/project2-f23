@@ -70,7 +70,7 @@ export default function LoginPage() {
                     }
                     <button className={styles.button} type="submit">Log in</button>
                 </form>
-                <p className={styles.bottomNote}>Don't have an account? <a className={styles.click} onClick={() => {
+                <p className={styles.bottomNote}>Don&apos;t have an account? <a className={styles.click} onClick={() => {
                     router.push('./createaccount');
                 }}>Sign up</a></p>
             </div>

@@ -16,7 +16,7 @@
     padding-bottom: 5px;
     color: #666;
     font-size: larger;
-    box-shadow: 0 0 0 2px rgba(0,0,0,.2);
+    border-bottom: 2px solid rgba(0,0,0,.2);
 }
 
 .createButton {
@@ -27,6 +27,8 @@
 
 .createButton img {
     cursor: pointer;
+    width: 25px;
+    height: 25px;
 }
 
 .right_header_nocreate {
@@ -36,6 +38,7 @@
     padding-top: 25px;
     color: #666;
     font-size: larger;
+    border-bottom: 2px solid rgba(0,0,0,.2);
 }
 
 .dashboard {

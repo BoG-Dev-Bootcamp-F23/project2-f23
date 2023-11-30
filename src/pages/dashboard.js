@@ -48,7 +48,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                             <p className={style.createText}>Create new</p>
                         </div>
                     </div>
-                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm) && log.user === userID)} />
+                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm) && log.user === userID)} pagination={false}/>
                 </div>
             );
         case 1:
@@ -63,7 +63,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                             <p className={style.createText}>Create new</p>
                         </div>
                     </div>            
-                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm) && animal.owner === userID)} />
+                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm) && animal.owner === userID)} pagination={false}/>
                 </div>
             );
         case 2:
@@ -72,7 +72,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_nocreate}>
                         <p>All training logs</p>
                     </div>
-                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm))} />
+                    <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm))} pagination={searchTerm === ''}/>
                 </div>
             );
         case 3:
@@ -81,7 +81,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_nocreate}>
                         <p>All animals</p>
                     </div>
-                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm))} />
+                    <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm))} pagination={searchTerm === ''}/>
                 </div>
             );
         case 4:
@@ -90,7 +90,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                     <div className={style.right_header_nocreate}>
                         <p>All users</p>
                     </div>
-                    <UserList users={users.filter(user => user.fullName.includes(searchTerm))} />
+                    <UserList users={users.filter(user => user.fullName.includes(searchTerm))} pagination={searchTerm === ''}/>
                 </div>
             );
         case 5:

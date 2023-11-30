@@ -3,7 +3,8 @@ import readTrainingLogs from '../../../../server/mongodb/actions/readTrainingLog
 export default async function handler(req, res) {
     if (req.method === 'GET') {
         try {
-            const trainingLogs = await readTrainingLogs()
+            const {page = 1, limit = 100000} = req.query;
+            const trainingLogs = await readTrainingLogs(page, limit);
             return res.status(200).json(trainingLogs)
         } catch (e) {
             return res.status(500).json({status: 'failure'})

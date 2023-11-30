@@ -1,25 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-
-// export default function AnimalCard({ animal }) {
-
-//     return (
-//         <div>
-//             <div className = "picture">
-//                 <img src={animal.profilePicture}/>
-//             </div>
-//             <div className = "information">
-//                 <div className = "icon">
-//                     <p> {animal.name[0]}</p>
-//                 </div>
-//                 <p> {animal.name} - {animal.breed}</p>
-//                 <p> {animal.owner}</p>
-//                 <p> Trained: {animal.hoursTrained}</p>
-//             </div>
-//         </div>
-//     );
-// }
-
-
 import Image from 'next/image';
 import styles from "../styles/AnimalCard.module.css";
 import defaultImage from "../images/defaultImage.png";
@@ -41,12 +19,10 @@ export default function AnimalCard({ animal }) {
             </Head>
             <div className={styles.picture}>
                 <Image
-                    // src={animal.profilePicture}
                     src={defaultImage}
                     alt={`${animal.name}`}
                     width={300}
                     height={200}
-                    // layout="responsive"
                 />
             </div>
             <div className={styles.info}>

@@ -38,9 +38,9 @@ export default function AnimalCard({ animal }) {
                     // src={animal.profilePicture}
                     src={defaultImage}
                     alt={`${animal.name}`}
-                    width={350}
-                    height={260}
-                    layout="responsive"
+                    width={300}
+                    height={200}
+                    // layout="responsive"
                 />
             </div>
             <div className={styles.info}>
@@ -49,6 +49,7 @@ export default function AnimalCard({ animal }) {
                 </div>
                 <div className={styles.infoRight}>
                     <div className={styles.animalInfo}>{animal.name} - {animal.breed}</div>
+                    <div className={styles.breed}>{animal.breed}</div>
                     <div className={styles.trainingInfo}>{owner?.fullName} • Trained: {animal.hoursTrained} hours</div>
                 </div>
             </div>

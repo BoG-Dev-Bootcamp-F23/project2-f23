@@ -37,11 +37,11 @@ export default function AnimalList({ animals, pagination }) {
                         }
                     </div>
                     <div className={style.buttons}>
-                        <button onClick={() => {
+                        <button className={style.button} onClick={() => {
                             if (seg > 1) setSeg(seg - 1);
                         }}>Left</button>
                         <p>{seg}</p>
-                        <button onClick={() => {
+                        <button className={style.button} onClick={() => {
                             if (seg < totalPages) setSeg(seg + 1);
                         }}>Right</button>
                     </div>

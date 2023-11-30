@@ -21,7 +21,9 @@
 
 import React from 'react';
 import styles from '../styles/TrainingCard.module.css'; // assuming CSS module
-import { useAuth } from "../contexts/useAuth"
+import { useAuth } from "../contexts/useAuth";
+import Image from "next/image";
+import PencilSolid from "../images/pencil-solid.png"
 
 export default function TrainingCard({ log }) {
 
@@ -32,23 +34,25 @@ export default function TrainingCard({ log }) {
 
     const date = new Date(log.date);
     const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
     ];
     return (
         <div className={styles.card}>
             <div className={styles.dateBadge}>
                 {/* <span className={styles.date}>{date}</span> */}
                 {/* <span className={styles.date}>{date}</span> */}
-                <span className={styles.date}>{monthNames[date.getMonth()]} {date.getDate()} {date.getFullYear()}</span>
+                <span className={styles.date}>{date.getDate()}</span>
+                <span className={styles.monthYear}>{monthNames[date.getMonth()]} - {date.getFullYear()}</span>
                 {/* <span className={styles.date}>{log.date}</span> */}
                 {/* <span className={styles.monthYear}>{log.monthYear}</span> */}
             </div>
             <div className={styles.content}>
-                <h2 className={styles.title}>{log.title}</h2>
+                <h2 className={styles.title}>{log.title}                    
+                    <span className={styles.hours}> • {log.hours} hours</span>
+                </h2>
                 <div className={styles.details}>
                     <span>{user?.fullName} - {animal?.breed} - {animal?.name}</span>
-                    <span>{log.hours} hours</span>
                 </div>
                 <p className={styles.description}>{log.description}</p>
             </div>
@@ -57,7 +61,7 @@ export default function TrainingCard({ log }) {
                 <button onClick = {() => {
                     setEditLog(log);
                     setDisplay(7);
-                }}>Edit</button> 
+                }}><Image className={styles.editImage} src={PencilSolid} alt="edit" /></button> 
             </div>
         </div>
     );

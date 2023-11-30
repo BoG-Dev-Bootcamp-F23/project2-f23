@@ -4,28 +4,43 @@
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    margin-bottom: 16px; /* Adjust as needed */
+    margin-left: 60px;
+    margin-right: 60px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    height: auto;
   }
   
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
   .dateBadge {
-    background-color: #4F46E5; /* Replace with your color code */
+    background-color: #070A52D9;
+    height: auto;
+    width: 15%;
     color: white;
-    padding: 8px 16px;
+    padding: 8px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin-right: 16px;
+    border-right: 16px solid white;
   }
   
   .date {
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 1;
+    font-size: 66px;
+    font-weight: 500;
+    font-family: "Oswald", sans-serif;
   }
   
   .monthYear {
-    font-size: 16px;
-    opacity: 0.7;
+    font-size: 20px;
+    font-family: "Oswald", sans-serif;
+    padding-bottom: 10px;
   }
   
   .content {
@@ -33,40 +48,91 @@
   }
   
   .title {
-    font-size: 18px;
+    font-size: 30px;
     font-weight: bold;
     margin: 0;
     color: #333;
+  }
+
+  .hours {
+    font-size: 20px;
+    font-weight: 500;
+    color: #848484;
   }
   
   .details {
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
-    color: #666;
-    margin: 8px 0;
+    font-weight: 500;
+    font-size: 16px;
+    color: #848484;
+    margin: 4px 0;
   }
   
   .description {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
+    font-size: 16px;
+    color: #000000;
+    margin-top: 20px;
   }
   
   .editButton {
-    margin-left: auto; /* Pushes the button to the right */
+    margin-left: auto;
+    padding-right: 20px;
   }
   
   .editButton button {
-    background-color: #FF5C5C; /* Replace with your color code */
+    background-color: #D21312;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    border-radius: 8px;
-    color: white;
-    padding: 8px 16px;
     cursor: pointer;
+  }
+
+  .editImage {
+    width: 26px;
+    height: 26px;
   }
   
   .editButton button:hover {
     opacity: 0.8;
   }
   
+  @media (max-width: 768px) {
+    .card {
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 16px; 
+    }
+  
+    .dateBadge {
+      width: 100%;
+      height: auto;
+      border-right: none;
+    }
+  
+    .content {
+      width: 100%;
+    }
+  
+    .editButton {
+      padding-right: 0;
+    }
+  
+    .title, .hours, .details, .description {
+      font-size: smaller;
+    }
+  
+    .editButton button {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .editImage {
+      width: 20px;
+      height: 20px;
+    }
+  }

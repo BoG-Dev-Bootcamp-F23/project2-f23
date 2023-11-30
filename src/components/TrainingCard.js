@@ -7,6 +7,9 @@ import Head from 'next/head';
 
 export default function TrainingCard({ log }) {
 
+    console.log("TrainingCar");
+    console.log(log);
+
     const {users, animals, setEditLog, setDisplay} = useAuth();
 
     const user = users?.filter(user => user._id === log.user)[0];

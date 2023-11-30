@@ -6,3 +6,11 @@
     gap: 40px;
     justify-content: center;
 }
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    padding-left: 30px;
+    margin: 10px;
+    gap: 30px;
+}

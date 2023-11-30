@@ -11,33 +11,42 @@
     flex-direction: row;
     justify-content: space-between;
     padding-top: 25px;
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 90px;
+    padding-right: 100px;
     padding-bottom: 5px;
     color: #666;
-    font-size: larger;
+    font-size: 24px;
     border-bottom: 2px solid rgba(0,0,0,.2);
 }
 
 .createButton {
     display: flex;
-    flex: row;
+    flex-direction: row;
+    align-items: center;
     gap: 10px;
+}
+.createButton:hover {
+    cursor: pointer;
 }
 
 .createButton img {
-    cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
+}
+
+.createText {
+    font-family: 'Heebo', sans-serif;
+    font-size: 18px;
 }
 
 .right_header_nocreate {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     padding-top: 25px;
+    padding-left: 90px;
+    padding-bottom: 5px;
     color: #666;
-    font-size: larger;
+    font-size: 24px;
     border-bottom: 2px solid rgba(0,0,0,.2);
 }
 

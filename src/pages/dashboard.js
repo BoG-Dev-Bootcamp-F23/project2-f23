@@ -39,7 +39,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                             setDisplay(5);
                         }}>
                             <Image src={create} alt="training log"/>
-                            <p>Create New</p>
+                            <p className={style.createText}>Create new</p>
                         </div>
                     </div>
                     <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm) && log.user === userID)} />
@@ -54,7 +54,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                             setDisplay(6);
                         }} >
                             <Image src={create} alt="animal picture"/>
-                            <p>Create New</p>
+                            <p className={style.createText}>Create new</p>
                         </div>
                     </div>            
                     <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm) && animal.owner === userID)} />

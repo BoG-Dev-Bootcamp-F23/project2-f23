@@ -3,10 +3,6 @@ import styles from '../styles/CreateAnimal.module.css';
 import { useAuth } from "../contexts/useAuth"
 import Head from 'next/head';
 
-function isDateValid(dateStr) {
-    return !isNaN(new Date(dateStr));
-}
-
 export default function CreateAnimal() {
 
     const {setDisplay, loginUser} = useAuth();
@@ -25,7 +21,6 @@ export default function CreateAnimal() {
     const thirtyDays = ['April', 'June', 'September', 'November'];
 
     async function handleSubmit() {
-    //   e.preventDefault();
         const param = {
             name: animalName,
             breed,
@@ -34,22 +29,20 @@ export default function CreateAnimal() {
             profilePicture: notes,
         };
         const response = await createanimal(param);
-        console.log(response);
         if (response.status === "success") {
             setDisplay(1);
         } else {
             //error handling
         } 
+        
     };
 
     async function createanimal(param) {
-        console.log(param.name);
         const result = await fetch('/api/animal', {
             method: 'POST',
             body: JSON.stringify(param)
         })
         const data = await result.json()
-        console.log(data);
         return data;
     }
 

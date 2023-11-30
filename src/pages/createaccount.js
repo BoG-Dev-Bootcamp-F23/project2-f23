@@ -132,9 +132,10 @@ export default function CreateAccountPage() {
                             required></input>
                         <p className={styles.errorMessage} style={{display: !match ? 'block' : 'none'}}>Passwords do not match</p>
                     </div>
-                    <label className={styles.adminLine}>
-                        <input className={styles.checkbox} type="checkbox" onChange={(e) => setAdmin(!admin)} />
-                        <div className={styles.adminText}>Admin access</div></label>
+                    <label className={styles.container + " " + styles.adminLine}>
+                        <input type="checkbox" onChange={(e) => setAdmin(!admin)} /> <div className={styles.adminText}>Admin access</div>
+                        <span className={styles.checkmark}></span>
+                    </label>
                     <button className={styles.button} type="submit">Sign up</button>
                 </form>
                 <p className={styles.bottomNote}>Already have an account? <a className={styles.click} onClick={() => {

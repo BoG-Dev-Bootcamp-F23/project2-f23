@@ -39,7 +39,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                             setDisplay(5);
                         }}>
                             <Image src={create} alt="training log"/>
-                            <p>Create New</p>
+                            <p className={style.createText}>Create new</p>
                         </div>
                     </div>
                     <TrainingLogList logs={trainingLogs.filter(log => log.title.includes(searchTerm) && log.user === userID)} />
@@ -54,7 +54,7 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                             setDisplay(6);
                         }} >
                             <Image src={create} alt="animal picture"/>
-                            <p>Create New</p>
+                            <p className={style.createText}>Create new</p>
                         </div>
                     </div>            
                     <AnimalList animals={animals.filter(animal => animal.name.includes(searchTerm) && animal.owner === userID)} />
@@ -88,9 +88,23 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                 </div>
             );
         case 5:
-            return <CreateTrainingLog />
+            return (
+                <div>
+                    <div className={style.right_header_nocreate}>
+                        <p>Training logs</p>
+                    </div>
+                    <CreateTrainingLog />
+                </div>
+            );
         case 6:
-            return <CreateAnimal />
+            return (
+                <div>
+                    <div className={style.right_header_nocreate}>
+                        <p>Animals</p>
+                    </div>
+                    <CreateAnimal />                
+                </div>
+            );
         case 7:
             return <EditTrainingLog />
     }
@@ -205,22 +219,20 @@ export default function DashboardPage( {userID}) {
                         <div className={style.body}>
                             <div className={style.left}>
                                 {user?<Sidebar /> : null}
-                                {/* { login? router.push('/login') : null} */}
                             </div>
                             <div className={style.right}>
-                                {/* {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, useruserID, editLog, setEditLog)} */}
                                 {renderComponent(display, setDisplay, animals, trainingLogs, users, searchTerm, loginUser, editLog, setEditLog)}
                             </div>
                         </div>
                     )
                 ) : (
                     <div className={style.notLoggedIn}>
-                        <h1>You&apos;re not logged in!</h1>
-                        <h3 onClick={() => {
+                        <h1 className={style.title}>Not logged in!</h1>
+                        <h3 className={style.subtitle} onClick={() => {
                             router.push({
                                 pathname: '/login'
                             })
-                        }}>Click to go back to log in page</h3>
+                        }}>Click to return to log in page...</h3>
                     </div>
                 )
             }

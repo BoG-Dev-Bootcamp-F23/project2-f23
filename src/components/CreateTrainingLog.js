@@ -3,10 +3,6 @@ import styles from '../styles/CreateTrainingLog.module.css';
 import {useAuth} from "../contexts/useAuth";
 import Head from 'next/head';
 
-function isDateValid(dateStr) {
-    return !isNaN(new Date(dateStr));
-}
-
 export default function CreateTrainingLog() {
 
     const {setDisplay, loginUser, animals} = useAuth();
@@ -16,7 +12,11 @@ export default function CreateTrainingLog() {
     });
 
     const [title, setTitle] = useState('');
-    const [animal, setAnimal] = useState(filteredAnimals[0]._id);
+    const [animal, setAnimal] = useState('');
+    if (filteredAnimals.length > 0) {
+        setAnimal(filteredAnimals[0]._id);
+    }
+
     const [hours, setHours] = useState('');
     const [month, setMonth] = useState('January');
     const [day, setDay] = useState('');

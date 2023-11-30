@@ -46,11 +46,11 @@ export default function UserList({ users, pagination }) {
                     <div className={styles.buttons}>
                         <button className={styles.button} onClick={() => {
                             if (seg > 1) setSeg(seg - 1);
-                        }}>Left</button>
+                        }}>&larr;</button>
                         <p>{seg}</p>
                         <button className={styles.button} onClick={() => {
                             if (seg < totalPages) setSeg(seg + 1);
-                        }}>Right</button>
+                        }}>&rarr;</button>
                     </div>
                 </div>
             ):(

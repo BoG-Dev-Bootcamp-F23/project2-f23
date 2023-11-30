@@ -5,7 +5,7 @@ export default function TrainingLogList({ logs }) {
     return (
         <div>
             {logs.map(log => (
-                <TrainingCard log={log}/>
+                <TrainingCard key={log._id} log={log}/>
             ))}
         </div>
     );

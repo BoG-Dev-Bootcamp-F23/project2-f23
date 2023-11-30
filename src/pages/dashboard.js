@@ -88,9 +88,23 @@ function renderComponent(display, setDisplay, animals, trainingLogs, users, sear
                 </div>
             );
         case 5:
-            return <CreateTrainingLog />
+            return (
+                <div>
+                    <div className={style.right_header_nocreate}>
+                        <p>Training logs</p>
+                    </div>
+                    <CreateTrainingLog />
+                </div>
+            );
         case 6:
-            return <CreateAnimal />
+            return (
+                <div>
+                    <div className={style.right_header_nocreate}>
+                        <p>Animals</p>
+                    </div>
+                    <CreateAnimal />                
+                </div>
+            );
         case 7:
             return <EditTrainingLog />
     }

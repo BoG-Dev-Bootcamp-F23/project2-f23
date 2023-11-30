@@ -30,7 +30,7 @@ export default function AnimalCard({ animal }) {
     
     const owner = users?.filter(user => user._id === animal.owner)[0];
 
-    const defaultImage="../images/defaultImage.png";
+    const defaultImage="/images/defaultImage.png";
 
     const [imageSrc, setImageSrc] = useState(animal.profilePicture || defaultImage);
 

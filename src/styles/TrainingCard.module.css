@@ -1,72 +1,71 @@
 .card {
-    display: flex;
-    align-items: center;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    margin-bottom: 16px; /* Adjust as needed */
-  }
-  
-  .dateBadge {
-    background-color: #4F46E5; /* Replace with your color code */
-    color: white;
-    padding: 8px 16px;
-    border-radius: 8px;
-    text-align: center;
-    margin-right: 16px;
-  }
-  
-  .date {
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 1;
-  }
-  
-  .monthYear {
-    font-size: 16px;
-    opacity: 0.7;
-  }
-  
-  .content {
-    flex-grow: 1;
-  }
-  
-  .title {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-    color: #333;
-  }
-  
-  .details {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #666;
-    margin: 8px 0;
-  }
-  
-  .description {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
-  }
-  
-  .editButton {
-    margin-left: auto; /* Pushes the button to the right */
-  }
-  
-  .editButton button {
-    background-color: #FF5C5C; /* Replace with your color code */
-    border: none;
-    border-radius: 8px;
-    color: white;
-    padding: 8px 16px;
-    cursor: pointer;
-  }
-  
-  .editButton button:hover {
-    opacity: 0.8;
-  }
-  
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 16px; /* Adjust as needed */
+}
+
+.dateBadge {
+  background-color: #4F46E5; /* Replace with your color code */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-align: center;
+  margin-right: 16px;
+}
+
+.date {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.monthYear {
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0;
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.editButton {
+  margin-left: auto; /* Pushes the button to the right */
+}
+
+.editButton button {
+  background-color: #FF5C5C; /* Replace with your color code */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.editButton button:hover {
+  opacity: 0.8;
+}

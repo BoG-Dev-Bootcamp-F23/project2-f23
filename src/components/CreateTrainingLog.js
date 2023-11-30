@@ -84,7 +84,6 @@ export default function CreateTrainingLog() {
                 <label htmlFor="animal" className={styles.titleText}>Select Animal</label>
                 <select id="animal" value={animal} className={styles.input} onChange={(e) => {
                     setAnimal(e.target.value)
-                    console.log(e.target.value)
                     }} required>
                     {filteredAnimals.map(animal => (
                         <option value={animal._id}>{animal.name} - {animal.breed}</option>
